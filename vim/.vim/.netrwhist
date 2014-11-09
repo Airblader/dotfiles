@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/ingo/Development/projects/Billiards/build'
-let g:netrw_dirhist_2='/home/ingo/Development/projects/Prepaid/repo/LoadBalancerApplicationServer/start_stop'
