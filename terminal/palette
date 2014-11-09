@@ -1,3 +1,7 @@
+*foreground: #DDEEDD
+*background: #131D24
+*opacity: 0.8
+
 !Black
 *color0:  #25374A
 *color8:  #3A526B
