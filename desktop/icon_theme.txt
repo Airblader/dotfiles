@@ -1,0 +1,12 @@
+- Theme
+  - GTK Theme: Adwaita
+  - Window Theme: Adwaita
+  - Activate via Ubuntu Tweak -> Tweaks -> Theme
+- Icon Theme
+  - Numic Circle (https://numixproject.org/)
+  - Activate via Ubuntu Tweak -> Tweaks -> Theme -> Icon Theme
+
+- Remove Unity Bubbles around icons:
+  - Backup /usr/share/unity/icons
+  - Unpack icons.tar.gz via
+    cd /usr/share/unity/ && sudo tar zxvf ~/path/to/icons.tar.gz
