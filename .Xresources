@@ -1,0 +1,53 @@
+!TODO This is a WIP
+
+URxvt.geometry: 140x30
+
+URxvt.scrollstyle: rxvt
+URxvt.thickness: 1
+URxvt.scrollBar_floating: True
+URxvt.scrollBar_right: True
+URxvt.scrollBar: on
+URxvt.scrollColor: #131D24
+
+URxvt.borderLess: False
+
+URxvt.urgentOnBell: True
+URxvt.visualBell: False
+
+!URxvt.font: 
+
+*foreground: #DDEEDD
+*background: #131D24
+!*opacity: 0.8
+
+!Black
+*color0:  #25374A
+*color8:  #3A526B
+
+!Red
+*color1:  #BD4A4A
+*color9:  #CC6666
+
+!Green
+*color2:  #B7CE42
+*color10: #BDE077
+
+!Yellow
+*color3:  #FEA63C
+*color11: #FFE863
+
+!Blue
+*color4:  #66AABB
+*color12: #AACCBB
+
+!Magenta
+*color5:  #F26B9E
+*color13: #FF5879
+
+!Cyan
+*color6:  #72AD8C
+*color14: #9FE3BC
+
+!White
+*color7:  #DDEEDD
+*color15: #FFFFFF
