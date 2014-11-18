@@ -75,6 +75,7 @@ bindsym $mod+Control+Shift+Left move window to workspace prev
 bindsym $mod+Control+Shift+Right move window to workspace next
 
 # 112 = Pg Up, 117 = Pg Dn
+# TODO use variables or keysyms
 bindsym $mod+Control+Shift+112 move container to output up
 bindsym $mod+Control+Shift+117 move container to output down
 
@@ -115,11 +116,25 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $mode_power System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
+mode "$mode_power" {
+        bindsym l exec --no-startup-id $HOME/.i3/i3exit lock, mode "default"
+        bindsym e exec --no-startup-id $HOME/.i3/i3exit logout, mode "default"
+        bindsym s exec --no-startup-id $HOME/.i3/i3exit suspend, mode "default"
+        bindsym h exec --no-startup-id $HOME/.i3/i3exit hibernate, mode "default"
+        bindsym r exec --no-startup-id $HOME/.i3/i3exit reboot, mode "default"
+        bindsym p exec --no-startup-id $HOME/.i3/i3exit shutdown, mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Control+l mode "$mode_power"
+
 # fix graphics glitch
 for_window [class="^.*"] border pixel 1
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id $HOME/.i3/i3lock-wrapper
+#bindsym $mod+Control+l exec --no-startup-id $HOME/.i3/i3lock-wrapper
 
 # start network-manager
 exec nm-applet
