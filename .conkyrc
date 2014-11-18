@@ -18,21 +18,25 @@ TEXT
 
 # Volume
   {
-#    "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | paste -s -d'-'} ",
+${if_match "${exec amixer get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
     "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | head -n1} ",
     "color": "\#A3ADB4"
+${else}
+    "full_text": " [muted] ",
+    "color": "\#FF0000"
+${endif}
   }
 
 # Battery
   ,{
     "full_text": " [${battery_percent}%] ",
-    "color": "\#A3ADB4"
+    "color": "${if_match ${battery_percent} <= 20}\#FF0000${else}\#A3ADB4${endif}"
   }
 
 # Wifi
 ${if_up wlan0}
   ,{
-    "full_text": " [${wireless_link_qual_perc wlan0}%] ${wireless_essid wlan0} ",
+    "full_text": " [${wireless_bitrate wlan0}] ${wireless_essid wlan0} ",
     "color": "\#A3ADB4"
   }
 ${endif}
