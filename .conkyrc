@@ -1,0 +1,52 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+update_interval 1.0
+total_run_times 0
+
+short_units yes
+if_up_strictness address
+use_spacer left
+override_utf8_locale yes
+cpu_avg_samples 2
+
+TEXT
+[
+
+# Volume
+  {
+    "full_text": "V ${exec amixer get Master | grep -o '\[.*%\]' | paste -s -d' '} ",
+    "color": "\#AAAAAA"
+  }
+
+# Battery
+  ,{
+    "full_text": "B [${battery_percent}%] ",
+    "color": "\#AAAAAA"
+  }
+
+# Wifi
+${if_up wlan0}
+  ,{
+    "full_text": "[${wireless_link_qual_perc wlan0}%] @ ${wireless_essid wlan0} ",
+    "color": "\#AAAAAA"
+  }
+${endif}
+
+# Ethernet
+${if_up eth0}
+  ,{
+    "full_text": "eth0 @ ${addr eth0}",
+    "color": "\#AAAAAA"
+  }
+${endif}
+
+# Time
+  ,{
+    "full_text": "[${time %a %d %b} ${time %H:%M:%S}] ",
+    "color": "\#FFFFFF"
+  }
+],

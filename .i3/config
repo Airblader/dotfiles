@@ -11,7 +11,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu
 bindsym $mod+d exec dmenu_run
@@ -108,7 +108,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 set $mode_power System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
@@ -128,11 +127,11 @@ bindsym $mod+Control+l mode "$mode_power"
 # fix graphics glitch
 for_window [class="^.*"] border pixel 1
 
-# lock screen
-#bindsym $mod+Control+l exec --no-startup-id $HOME/.i3/i3lock-wrapper
-
 # start network-manager
 exec nm-applet
+
+# TODO verify
+exec gnome-keyring-daemon
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale $HOME/.i3/wallpaper.jpg
@@ -143,6 +142,16 @@ client.focused_inactive #444444 #444444 #FFFFFF
 # TODO client.urgent?
 # TODO client.placeholder?
 
+workspace_auto_back_and_forth yes
+
 bar {
-        status_command i3status
+        status_command $HOME/.i3/conky-i3bar
+        position bottom
+        colors {
+                statusline #AAAAAA
+                background #131D24
+                separator #131D24
+                focused_workspace #232D34 #232D34 #9FBC00
+                inactive_workspace #131D24 #131D24 #AAAAAA
+        }
 }
