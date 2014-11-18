@@ -18,35 +18,36 @@ TEXT
 
 # Volume
   {
-    "full_text": "V ${exec amixer get Master | grep -o '\[.*%\]' | paste -s -d' '} ",
-    "color": "\#AAAAAA"
+#    "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | paste -s -d'-'} ",
+    "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | head -n1} ",
+    "color": "\#A3ADB4"
   }
 
 # Battery
   ,{
-    "full_text": "B [${battery_percent}%] ",
-    "color": "\#AAAAAA"
+    "full_text": " [${battery_percent}%] ",
+    "color": "\#A3ADB4"
   }
 
 # Wifi
 ${if_up wlan0}
   ,{
-    "full_text": "[${wireless_link_qual_perc wlan0}%] @ ${wireless_essid wlan0} ",
-    "color": "\#AAAAAA"
+    "full_text": " [${wireless_link_qual_perc wlan0}%] ${wireless_essid wlan0} ",
+    "color": "\#A3ADB4"
   }
 ${endif}
 
 # Ethernet
 ${if_up eth0}
   ,{
-    "full_text": "eth0 @ ${addr eth0}",
-    "color": "\#AAAAAA"
+    "full_text": "  ${addr eth0} ",
+    "color": "\#A3ADB4"
   }
 ${endif}
 
 # Time
   ,{
-    "full_text": "[${time %a %d %b} ${time %H:%M:%S}] ",
+    "full_text": " [${time %a %d %b} ${time %H:%M:%S}] ",
     "color": "\#FFFFFF"
   }
 ],
