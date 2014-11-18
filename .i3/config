@@ -14,7 +14,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start dmenu
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -p "Search:" -nb "#131D24" -nf "#DDEEDD" -sb "#232D34" -sf "#9FBC00"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -129,9 +129,6 @@ for_window [class="^.*"] border pixel 1
 
 # start network-manager
 exec nm-applet
-
-# TODO verify
-exec gnome-keyring-daemon
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale $HOME/.i3/wallpaper.jpg
