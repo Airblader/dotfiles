@@ -142,6 +142,12 @@ exec nm-applet
 # set wallpaper
 exec --no-startup-id feh --bg-scale $HOME/.i3/wallpaper.jpg
 
+client.focused          #9FBC00 #9FBC00 #FFFFFF
+client.unfocused        #444444 #444444 #FFFFFF
+client.focused_inactive #444444 #444444 #FFFFFF
+# TODO client.urgent?
+# TODO client.placeholder?
+
 bar {
         status_command i3status
 }
