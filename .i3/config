@@ -52,9 +52,8 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -74,10 +73,8 @@ bindsym $mod+Control+Right workspace next_on_output
 bindsym $mod+Control+Shift+Left move window to workspace prev
 bindsym $mod+Control+Shift+Right move window to workspace next
 
-# 112 = Pg Up, 117 = Pg Dn
-# TODO use variables or keysyms
-bindsym $mod+Control+Shift+112 move container to output up
-bindsym $mod+Control+Shift+117 move container to output down
+bindsym $mod+Control+Shift+Prior move container to output up
+bindsym $mod+Control+Shift+Next move container to output down
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
