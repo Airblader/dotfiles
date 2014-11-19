@@ -1,23 +1,21 @@
+# vim:filetype=i3
 set $mod Mod1
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
+workspace_auto_back_and_forth yes
+
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+client.focused          #9FBC00 #9FBC00 #FFFFFF
+client.unfocused        #444444 #444444 #FFFFFF
+client.focused_inactive #444444 #444444 #FFFFFF
+# TODO client.urgent?
+# TODO client.placeholder?
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-# start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# kill focused window
 bindsym $mod+q kill
 
-# start dmenu
 bindsym $mod+d exec dmenu_run -p "Search:" -nb "#131D24" -nf "#DDEEDD" -sb "#232D34" -sf "#9FBC00"
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -73,8 +71,8 @@ bindsym $mod+Control+Right workspace next_on_output
 bindsym $mod+Control+Shift+Left move window to workspace prev
 bindsym $mod+Control+Shift+Right move window to workspace next
 
-bindsym $mod+Control+Shift+Prior move container to output up
-bindsym $mod+Control+Shift+Next move container to output down
+bindsym $mod+Control+Shift+Prior move container to output left
+bindsym $mod+Control+Shift+Next move container to output right
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -93,9 +91,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-# reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # screenshot
@@ -131,20 +127,6 @@ bindsym $mod+Control+l mode "$mode_power"
 # fix graphics glitch
 for_window [class="^.*"] border pixel 1
 
-# start network-manager
-exec nm-applet
-
-# set wallpaper
-exec --no-startup-id feh --bg-scale $HOME/.i3/wallpaper.jpg
-
-client.focused          #9FBC00 #9FBC00 #FFFFFF
-client.unfocused        #444444 #444444 #FFFFFF
-client.focused_inactive #444444 #444444 #FFFFFF
-# TODO client.urgent?
-# TODO client.placeholder?
-
-workspace_auto_back_and_forth yes
-
 bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
@@ -157,3 +139,15 @@ bar {
                 inactive_workspace #131D24 #131D24 #AAAAAA
         }
 }
+
+# AUTOSTART
+
+# start network-manager
+exec nm-applet
+
+# set wallpaper
+exec --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
+#exec --no-startup-id nitrogen --restore
+
+# TODO make systemd service work instead
+exec --no-startup-id xrdb -merge .Xresources
