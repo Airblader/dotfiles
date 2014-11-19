@@ -98,6 +98,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# screenshot
+bindsym --release Print exec scrot $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
+bindsym --release Shift+Print exec scrot -s $HOME/Pictures/screenshot-$(date +%Y-%m-%d).png
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym Left resize shrink width 1 px or 1 ppt
