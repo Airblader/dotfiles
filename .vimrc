@@ -1,16 +1,30 @@
 set hlsearch
 set number
 
+filetype on
+filetype plugin on
 syntax on
+
+set nocompatible
+
+" TODO experimental
+set showcmd
+
+set autoindent
+set ignorecase
+set smartcase
+
+set expandtab
+set smarttab
+
+set shiftwidth=4
+set softtabstop=4
 
 " window movement
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-set background=dark
-" colorscheme base16-railscasts
 
 highlight clear SignColumn
 highlight VertSplit    ctermbg=236
