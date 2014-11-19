@@ -44,7 +44,7 @@ ${endif}
 # Ethernet
 ${if_up eth0}
   ,{
-    "full_text": "  ${addr eth0} ",
+    "full_text": " [${downspeed eth0}] ${addr eth0} ",
     "color": "\#A3ADB4"
   }
 ${endif}
