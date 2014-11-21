@@ -1,3 +1,6 @@
+- Autologin
+  - copy files in /etc/... to the actual folder and enable them via systemctl
+
 - NetworkManager / ModemManager
   - change "type" to "simple"
 
