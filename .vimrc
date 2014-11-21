@@ -7,10 +7,8 @@ syntax on
 
 set nocompatible
 
-" TODO experimental
 set showcmd
 
-set autoindent
 set ignorecase
 set smartcase
 
