@@ -1,0 +1,22 @@
+- NetworkManager / ModemManager
+  - change "type" to "simple"
+
+- xresources
+  - enable ~/.config/systemd/user/xresources.service
+  - throw out xrdb command from ~/.i3/config
+
+- Masked services
+  - exim4.service
+  - console-setup.service
+  - nfs-common.service
+  - rpcbind.service
+  - network-online.target
+  - cups.path
+  - minissdpd.service
+  - rpcbind.target
+  - binfmt-support.service
+  - bluetooth.service
+  - keyboard-setup.service
+
+- Disabled services
+  - avahi *.service
