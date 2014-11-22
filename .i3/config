@@ -142,6 +142,11 @@ bindsym $mod+Control+l mode "$mode_power"
 # fix graphics glitch
 for_window [class="^.*"] border pixel 1
 
+# windows with no border
+for_window [class="(?i)chrome"]      border none
+for_window [class="(?i)thunderbird"] border none
+for_window [class="(?i)eclipse"]     border none
+
 bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
