@@ -1,13 +1,21 @@
 # vim:filetype=i3
 set $mod Mod1
+
+set $lime      #9FBC00
+set $blue      #131D24
+set $lightblue #232D34
+set $lightgray #DDEEDD
+set $darkgray  #444444
+set $white     #FFFFFF
+
 gap_size 12
 
 workspace_auto_back_and_forth yes
 
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-client.focused          #9FBC00 #9FBC00 #FFFFFF
-client.unfocused        #444444 #444444 #FFFFFF
-client.focused_inactive #444444 #444444 #FFFFFF
+client.focused          $lime     $lime     $white
+client.unfocused        $darkgray $darkgray $white
+client.focused_inactive $darkgray $darkgray $white
 # TODO client.urgent?
 # TODO client.placeholder?
 
@@ -16,7 +24,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+q kill
 
-bindsym $mod+d exec dmenu_run -p "Search:" -nb "#131D24" -nf "#DDEEDD" -sb "#232D34" -sf "#9FBC00"
+bindsym $mod+d exec dmenu_run -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -133,11 +141,11 @@ bar {
         position bottom
         font pango:DejaVu Sans Mono, FontAwesome 8
         colors {
-                statusline #AAAAAA
-                background #131D24
-                separator #131D24
-                focused_workspace #232D34 #232D34 #9FBC00
-                inactive_workspace #131D24 #131D24 #AAAAAA
+                statusline         $lightgray
+                background         $blue
+                separator          $blue
+                focused_workspace  $lightblue $lightblue $lime 
+                inactive_workspace $blue      $blue      $lightgray
         }
 }
 
