@@ -1,0 +1,1 @@
+ingo ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown, /usr/sbin/pm-suspend, /usr/sbin/pm-hibernate

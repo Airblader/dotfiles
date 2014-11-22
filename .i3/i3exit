@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+#  Note: this script requires passwordless access to
+#        poweroff, reboot, pm-suspend and pm-hibernate
+#
+
 
 lock() {
   $HOME/.i3/i3lock-wrapper
@@ -12,16 +17,20 @@ case "$1" in
     i3-msg exit
     ;;
   suspend)
-    lock && systemctl suspend
+     lock && sudo pm-suspend
+#    lock && systemctl suspend
     ;;
   hibernate)
-    lock && systemctl hibernate
+     lock && sudo pm-hibernate
+#    lock && systemctl hibernate
     ;;
   reboot)
-    systemctl reboot
+     sudo reboot
+#    systemctl reboot
     ;;
   shutdown)
-    systemctl poweroff
+     sudo poweroff
+#    systemctl poweroff
     ;;
   *)
     echo "Usage: $0 [lock|logout|suspend|hibernate|reboot|shutdown]"
