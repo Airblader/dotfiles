@@ -20,24 +20,24 @@ TEXT
   {
 ${if_match "${exec amixer get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
     "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | head -n1} ",
-    "color": "\#A3ADB4"
+    "color": "\#BBCCBB"
 ${else}
     "full_text": " [muted] ",
-    "color": "\#FF0000"
+    "color": "\#FFBB22"
 ${endif}
   }
 
 # Battery
   ,{
     "full_text": " [${battery_percent}%] ",
-    "color": "${if_match ${battery_percent} <= 20}\#FF0000${else}\#A3ADB4${endif}"
+    "color": "${if_match ${battery_percent} <= 20}\#FFBB22${else}\#BBCCBB${endif}"
   }
 
 # Wifi
 ${if_up wlan0}
   ,{
     "full_text": " [${wireless_bitrate wlan0}] ${wireless_essid wlan0} ",
-    "color": "\#A3ADB4"
+    "color": "\#BBCCBB"
   }
 ${endif}
 
@@ -45,7 +45,7 @@ ${endif}
 ${if_up eth0}
   ,{
     "full_text": " [${downspeed eth0}] ${addr eth0} ",
-    "color": "\#A3ADB4"
+    "color": "\#BBCCBB"
   }
 ${endif}
 
