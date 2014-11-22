@@ -1,25 +1,16 @@
-- backlight:
-  - acpi_osi=Linux [acpi_backlight=vendor|legacy] = nv_backlight (nope)
-  - acpi_osi="!Windows 2012" = nv_backlight + acpi_video0 (nope)
-  - acpi_osi="!Windows 2012" acpi_backlight=vendor = nv_backlight + thinkpad_screen (nope)
-  - nvidia driver = acpi_video0 (yay)
-
 - Shortcuts
   - How to deal with ALT+Left/Right (browser <-> focus)?
+  - script to create desktop when moving left/right
   - Improved dmenu
 - Other
   - No border for chrome
   - Make GTK work
 
-- git check-ins
-  - ~/.i3
-  - List of masked systemd units
-  - Fixed NetworkManager/ModemManager
-  - Disabled avahi service
-  - xresources.service
-  - bash_profile
-  - autologin scripts
-  - .vimrc / .vim/
+- backlight:
+  - acpi_osi=Linux [acpi_backlight=vendor|legacy] = nv_backlight (nope)
+  - acpi_osi="!Windows 2012" = nv_backlight + acpi_video0 (nope)
+  - acpi_osi="!Windows 2012" acpi_backlight=vendor = nv_backlight + thinkpad_screen (nope)
+  - nvidia driver = acpi_video0 (yay)
 
 - Boot Kernel Parameters
   - thinkpad_acpi.experimental=1
@@ -27,6 +18,4 @@
   - i915.i915_enable_rc6=3
   - i915.fastboot=1
   - loglevel=3
-  - systemd.log_level=err
-  - systemd.show_status=false
   - quiet nosplash
