@@ -8,8 +8,8 @@ set $lightgray #DDEEDD
 set $darkgray  #444444
 set $white     #FFFFFF
 
-set $ws1 browser
-set $ws2 shell
+set $ws1 1:browser
+set $ws2 2:shell
 
 gap_size 12
 
@@ -143,6 +143,7 @@ bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
         font pango:DejaVu Sans Mono, FontAwesome 8
+        strip_workspace_numbers yes
         colors {
                 statusline         $lightgray
                 background         $blue
