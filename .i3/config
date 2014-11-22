@@ -1,5 +1,6 @@
 # vim:filetype=i3
 set $mod Mod1
+gap_size 12
 
 workspace_auto_back_and_forth yes
 
@@ -130,7 +131,7 @@ for_window [class="^.*"] border pixel 1
 bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
-        font pango:DejaVu Sans Mono, Icons 8
+        font pango:DejaVu Sans Mono, FontAwesome 8
         colors {
                 statusline #AAAAAA
                 background #131D24

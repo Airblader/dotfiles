@@ -49,7 +49,7 @@ ${if_up eth0}
   }
 ${endif}
 
-# Time
+# Calendar
   ,{
     "full_text": " [${time %a %d %b} ${time %H:%M:%S}] ",
     "color": "\#FFFFFF"
