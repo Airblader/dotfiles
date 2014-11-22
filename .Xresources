@@ -1,6 +1,7 @@
 URxvt.geometry: 140x30
 URxvt.transparent: True
 URxvt.shading: 20
+URxvt.fading: 20
 
 URxvt.scrollstyle: rxvt
 URxvt.thickness: 1
