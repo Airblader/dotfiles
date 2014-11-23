@@ -23,14 +23,14 @@ ${if_match "${exec amixer get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
     "color": "\#BBCCBB"
 ${else}
     "full_text": " [muted] ",
-    "color": "\#FFBB22"
+    "color": "\#B33A3A"
 ${endif}
   }
 
 # Battery
   ,{
     "full_text": " [${battery_percent}%] ",
-    "color": "${if_match ${battery_percent} <= 20}\#FFBB22${else}\#BBCCBB${endif}"
+    "color": "${if_match ${battery_percent} <= 20}\#B33A3A${else}\#BBCCBB${endif}"
   }
 
 # Wifi
