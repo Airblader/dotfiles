@@ -1,4 +1,10 @@
+- Ideas
+  - cronjob to templatify conkyrc
+- Make clipboard work
+- autostart chrome
+- nicer workspace names for unnamed ones?
 - Shortcuts
+  - mod+shift+enter = scratchpad terminal?
   - How to deal with ALT+Left/Right (browser <-> focus)?
   - script to create desktop when moving left/right
   - Improved dmenu

@@ -7,9 +7,12 @@ set $lightblue #232D34
 set $lightgray #DDEEDD
 set $darkgray  #444444
 set $white     #FFFFFF
+set $urgentred #B33A3A
 
-set $ws1 1:browser
-set $ws2 2:shell
+set $ws1  1:browser
+set $ws2  2:shell
+set $ws9  9:mail
+set $ws10 10:chat
 
 gap_size 12
 
@@ -27,8 +30,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+q kill
 
-bindsym $mod+d exec dmenu_run -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec dmenu_run -i -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"'
 
 # change focus
 bindsym $mod+Left focus left
@@ -74,8 +77,8 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 bindsym $mod+Control+Left workspace prev_on_output
 bindsym $mod+Control+Right workspace next_on_output
@@ -95,8 +98,8 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
@@ -147,6 +150,11 @@ for_window [class="(?i)chrome"]      border none
 for_window [class="(?i)thunderbird"] border none
 for_window [class="(?i)eclipse"]     border none
 
+# assign certain applications to a specific workspace
+assign [class="(?i)chrome"] $ws1
+assign [class="(?i)thunderbird"] $ws9
+assign [class="(?i)pidgin"] $ws10
+
 bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
@@ -156,8 +164,11 @@ bar {
                 statusline         $lightgray
                 background         $blue
                 separator          $blue
+
+#                                  BORDER     BACKGROUND TEXT
                 focused_workspace  $lightblue $lightblue $lime 
                 inactive_workspace $blue      $blue      $lightgray
+                urgent_workspace   $urgentred $blue      $lightgray
         }
 }
 
@@ -169,9 +180,5 @@ exec gnome-settings-daemon
 # start network-manager
 exec nm-applet
 
-# set wallpaper
 exec --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
-#exec --no-startup-id nitrogen --restore
-
-# TODO make systemd service work instead
 exec --no-startup-id xrdb -merge .Xresources
