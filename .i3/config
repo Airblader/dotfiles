@@ -176,4 +176,5 @@ exec nm-applet
 exec --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
 exec --no-startup-id xrdb -merge .Xresources
 
-exec --no-startup-id i3-msg 'workspace number 1'
+# fix workspace name on start
+exec --no-startup-id i3-msg 'rename workspace to $ws1'
