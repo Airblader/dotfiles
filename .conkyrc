@@ -18,8 +18,8 @@ TEXT
 
 # Volume
   {
-${if_match "${exec amixer get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
-    "full_text": "   ${exec amixer get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
+${if_match "${exec amixer -D pulse get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
+    "full_text": "   ${exec amixer -D pulse get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
     "color": "\#FFFFFF"
 ${else}
     "full_text": "   muted  ",
