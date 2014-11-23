@@ -159,7 +159,7 @@ assign [class="(?i)pidgin"] $ws10
 bar {
         status_command $HOME/.i3/conky-i3bar
         position bottom
-        font pango:DejaVu Sans Mono, FontAwesome 8
+        font pango:FontAwesome 8
         strip_workspace_numbers yes
         colors {
                 statusline         $lightgray
