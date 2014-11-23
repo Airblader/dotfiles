@@ -36,7 +36,7 @@ ${endif}
 # Wifi
 ${if_up wlan0}
   ,{
-    "full_text": "   ${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
+    "full_text": "   ${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
     "color": "\#FFFFFF"
   }
 ${endif}

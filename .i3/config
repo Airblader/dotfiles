@@ -9,10 +9,10 @@ set $darkgray  #444444
 set $white     #FFFFFF
 set $urgentred #B33A3A
 
-set $ws1  1:browser
-set $ws2  2:shell
-set $ws9  9:mail
-set $ws10 10:chat
+set $ws1  "1:"
+set $ws2  "2:"
+set $ws9  "9:"
+set $ws10 "10:"
 
 gap_size 12
 
