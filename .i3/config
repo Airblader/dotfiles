@@ -163,7 +163,7 @@ bar {
 #                                  BORDER     BACKGROUND TEXT
                 focused_workspace  $lightblue $lightblue $lime 
                 inactive_workspace $blue      $blue      $lightgray
-                urgent_workspace   $urgentred $blue      $lightgray
+                urgent_workspace   $blue      $blue      $urgentred
         }
 }
 
