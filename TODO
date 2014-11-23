@@ -6,10 +6,6 @@
 - Shortcuts
   - mod+shift+enter = scratchpad terminal?
   - How to deal with ALT+Left/Right (browser <-> focus)?
-  - script to create desktop when moving left/right
-  - Improved dmenu
-- Other
-  - Make GTK work
 
 - backlight:
   - acpi_osi=Linux [acpi_backlight=vendor|legacy] = nv_backlight (nope)
