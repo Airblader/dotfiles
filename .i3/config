@@ -143,9 +143,10 @@ for_window [class="(?i)thunderbird"] border none
 for_window [class="(?i)eclipse"]     border none
 
 # assign certain applications to a specific workspace
-assign [class="(?i)chrome"] $ws1
+assign [class="(?i)chrome"]      $ws1
+assign [class="(?i)eclipse"]     $ws3
 assign [class="(?i)thunderbird"] $ws9
-assign [class="(?i)pidgin"] $ws10
+assign [class="(?i)pidgin"]      $ws10
 
 bar {
         status_command $HOME/.i3/conky-i3bar
