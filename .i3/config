@@ -27,11 +27,11 @@ force_display_urgency_hint 0 ms
 
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
-#                       BORDER     BACKGROUND TEXT
-client.focused          $lime      $lime      $white
-client.unfocused        $darkgray  $darkgray  $white
-client.focused_inactive $darkgray  $darkgray  $white
-client.urgent           $urgentred $darkgray  $white
+#                       BORDER     BACKGROUND TEXT   INDICATOR
+client.focused          $lime      $lime      $white $white
+client.unfocused        $darkgray  $darkgray  $white $white
+client.focused_inactive $darkgray  $darkgray  $white $white
+client.urgent           $urgentred $darkgray  $white $white
 
 floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
