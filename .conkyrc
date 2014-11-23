@@ -19,39 +19,45 @@ TEXT
 # Volume
   {
 ${if_match "${exec amixer get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
-    "full_text": " ${exec amixer get Master | grep -o '\[.*%\]' | head -n1} ",
-    "color": "\#BBCCBB"
+    "full_text": "   ${exec amixer get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
+    "color": "\#FFFFFF"
 ${else}
-    "full_text": " [muted] ",
+    "full_text": "   muted  ",
     "color": "\#B33A3A"
 ${endif}
   }
 
 # Battery
   ,{
-    "full_text": " [${battery_percent}%] ",
-    "color": "${if_match ${battery_percent} <= 20}\#B33A3A${else}\#BBCCBB${endif}"
+    "full_text": "   ${battery_percent}%  ",
+    "color": "${if_match ${battery_percent} <= 20}\#B33A3A${else}\#FFFFFF${endif}"
   }
 
 # Wifi
 ${if_up wlan0}
   ,{
-    "full_text": " [${wireless_bitrate wlan0}] ${wireless_essid wlan0} ",
-    "color": "\#BBCCBB"
+    "full_text": "   ${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
+    "color": "\#FFFFFF"
   }
 ${endif}
 
 # Ethernet
 ${if_up eth0}
   ,{
-    "full_text": " [${downspeed eth0}] ${addr eth0} ",
-    "color": "\#BBCCBB"
+    "full_text": "   ${downspeed eth0}  ${addr eth0}  ",
+    "color": "\#FFFFFF"
   }
 ${endif}
 
-# Calendar
+# Date
   ,{
-    "full_text": " [${time %a %d %b} ${time %H:%M:%S}] ",
+    "full_text": "   ${time %a, %d. %B}  ",
+    "color": "\#FFFFFF"
+  }
+
+# Time
+  ,{
+    "full_text": "   ${time %H:%M:%S}  ",
     "color": "\#FFFFFF"
   }
 ],

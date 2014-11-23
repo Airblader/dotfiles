@@ -164,7 +164,7 @@ bar {
         colors {
                 statusline         $lightgray
                 background         $blue
-                separator          $blue
+                separator          $lime
 
 #                                  BORDER     BACKGROUND TEXT
                 focused_workspace  $lightblue $lightblue $lime 
