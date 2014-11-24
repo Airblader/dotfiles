@@ -1,8 +1,28 @@
-node
+# obvious stuff
 conky
-fonts-font-awesome
 i3lock
+fonts-font-awesome
+dmenu (suckless-tools)
+
+# autostart stuff (but not "needed")
+gnome-settings-daemon
+nm-applet
+
+# currently needed for battery-level
+node
 acpi
+
+# screenshots
 scrot
+
+# wallpaper
 feh
-yad
+
+# sound control
+amixer
+
+# graphical folder explorer
+nautilus
+
+# picking volume etc. windows
+# yad
