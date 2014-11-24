@@ -17,26 +17,52 @@ TEXT
 [
 
 # Volume
-  {
 ${if_match "${exec amixer -D pulse get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
-    "full_text": "   ${exec amixer -D pulse get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
-    "color": "\#FFFFFF"
-${else}
-    "full_text": "   muted  ",
-    "color": "\#B33A3A"
-${endif}
+  {
+    "full_text": "   ",
+    "color": "\#9FBC00F",
+    "separator": false,
+    "separator_block_width": 0
   }
+  ,{
+    "full_text": "${exec amixer -D pulse get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
+    "color": "\#FFFFFF"
+  }
+${else}
+  {
+    "full_text": "   ",
+    "color": "\#B33A3A",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "muted  ",
+    "color": "\#FFFFFF"
+  }
+${endif}
 
 # Battery
   ,{
-    "full_text": "   ${battery_percent}%  ",
+    "full_text": "   ",
+    "color": "\#9FBC00",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "${battery_percent}%  ",
     "color": "${if_match ${battery_percent} <= 20}\#B33A3A${else}\#FFFFFF${endif}"
   }
 
 # Wifi
 ${if_up wlan0}
   ,{
-    "full_text": "   ${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
+    "full_text": "   ",
+    "color": "\#9FBC00",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
     "color": "\#FFFFFF"
   }
 ${endif}
@@ -44,20 +70,38 @@ ${endif}
 # Ethernet
 ${if_up eth0}
   ,{
-    "full_text": "   ${downspeed eth0}  ${addr eth0}  ",
+    "full_text": "   ",
+    "color": "\#9FBC00",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "${downspeed eth0}  ${addr eth0}  ",
     "color": "\#FFFFFF"
   }
 ${endif}
 
 # Date
   ,{
-    "full_text": "   ${time %a, %d. %B}  ",
+    "full_text": "   ",
+    "color": "\#9FBC00",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "${time %a, %d. %B}  ",
     "color": "\#FFFFFF"
   }
 
 # Time
   ,{
-    "full_text": "   ${time %H:%M:%S}  ",
+    "full_text": "   ",
+    "color": "\#9FBC00",
+    "separator": false,
+    "separator_block_width": 0
+  }
+  ,{
+    "full_text": "${time %H:%M:%S}  ",
     "color": "\#FFFFFF"
   }
 ],
