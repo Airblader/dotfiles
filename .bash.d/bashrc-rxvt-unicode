@@ -33,3 +33,5 @@ fi
 #
 
 source ~/.bash.d/bash-prompt
+source ~/.bash.d/java
+source ~/.bash.d/ppit
