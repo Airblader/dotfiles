@@ -133,6 +133,7 @@ mode "$mode_power" {
         bindsym Escape mode "default"
 }
 bindsym $mod+Control+l mode "$mode_power"
+bindsym Mod1+Control+l mode "$mode_power"
 
 # fix graphics glitch
 for_window [class="^.*"] border pixel 1
