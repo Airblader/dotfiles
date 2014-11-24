@@ -14,7 +14,7 @@ override_utf8_locale yes
 cpu_avg_samples 2
 
 TEXT
-[
+,[
 
 # Volume
 ${if_match "${exec amixer -D pulse get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
@@ -50,7 +50,8 @@ ${endif}
   }
   ,{
     "full_text": "${battery_percent}%  ",
-    "color": "${execi 30 node $HOME/.i3/battery-color}"
+    "color": "\#FFFFFF"
+#    "color": "${execi 30 node $HOME/.i3/battery-color}"
   }
 
 # Wifi
@@ -86,11 +87,13 @@ ${endif}
     "full_text": "   ",
     "color": "\#9FBC00",
     "separator": false,
-    "separator_block_width": 0
+    "separator_block_width": 0,
+    "name":"calendar"
   }
   ,{
     "full_text": "${time %a, %d. %B}  ",
-    "color": "\#FFFFFF"
+    "color": "\#FFFFFF",
+    "name":"calendar"
   }
 
 # Time
@@ -104,4 +107,4 @@ ${endif}
     "full_text": "${time %H:%M:%S}  ",
     "color": "\#FFFFFF"
   }
-],
+]

@@ -1,8 +1,14 @@
-- Ideas
-  - cronjob to templatify conkyrc
-  - or use a locally running db?
+- Disable GNOME lockscreen
+- Dependencies
+  - Update list
+  - setup script
+- conky click stuff with yad (https://github.com/nicklan/i3config)
+- Display emails in conky
 - Make clipboard work
-- autostart chrome
+- Rewrite battery-level to use bash
+- Wallpaper
+- Unlock keyring
+
 
 - backlight:
   - acpi_osi=Linux [acpi_backlight=vendor|legacy] = nv_backlight (nope)
