@@ -1,5 +1,5 @@
 # vim:filetype=i3
-set $mod Mod1
+set $mod Mod4
 
 set $lime      #9FBC00
 set $blue      #131D24
