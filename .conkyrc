@@ -50,7 +50,7 @@ ${endif}
   }
   ,{
     "full_text": "${battery_percent}%  ",
-    "color": "${if_match ${battery_percent} <= 20}\#B33A3A${else}\#FFFFFF${endif}"
+    "color": "${execi 30 node $HOME/.i3/battery-color}"
   }
 
 # Wifi
