@@ -1,9 +1,9 @@
 - conky click stuff with yad (https://github.com/nicklan/i3config)
   - volume > 100 (pactl set-sink-volume 1 150$)
+    - as a "boost" icon? :)
 - Display emails in conky
 - Make clipboard work
 - Rewrite battery-level to use bash
-- Wallpaper
 - Unlock keyring
 
 
