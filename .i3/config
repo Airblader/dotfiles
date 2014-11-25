@@ -142,12 +142,13 @@ for_window [class="^.*"] border pixel 1
 for_window [class="(?i)chrome"]      border none
 for_window [class="(?i)thunderbird"] border none
 for_window [class="(?i)eclipse"]     border none
+for_window [class="(?i)pidgin" window_role="^conversation$"] resize grow width 0 px or 30 ppt
 
 # assign certain applications to a specific workspace
 assign [class="(?i)chrome"]      $ws1
 assign [class="(?i)eclipse"]     $ws3
 assign [class="(?i)thunderbird"] $ws9
-#assign [class="(?i)pidgin"]      $ws10
+assign [class="(?i)pidgin"]      $ws10
 
 bar {
         status_command $HOME/.i3/conky-i3bar
@@ -161,8 +162,8 @@ bar {
 
 #                                  BORDER     BACKGROUND TEXT
                 focused_workspace  $lightblue $lightblue $lime 
-                inactive_workspace $blue      $blue      $lightgray
-                urgent_workspace   $blue      $blue      $urgentred
+                inactive_workspace $blue      $blue      $white
+                urgent_workspace   $urgentred $urgentred $white
         }
 }
 
@@ -174,7 +175,7 @@ exec gnome-settings-daemon
 # start network-manager
 exec nm-applet
 
-exec --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
+exec_always --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
 exec --no-startup-id xrdb -merge .Xresources
 
 # fix workspace name on start
