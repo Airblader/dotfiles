@@ -175,7 +175,7 @@ exec gnome-settings-daemon
 # start network-manager
 exec nm-applet
 
-exec_always --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
+exec --no-startup-id feh --bg-center $HOME/.i3/wallpaper.jpg
 exec --no-startup-id xrdb -merge .Xresources
 
 # fix workspace name on start
