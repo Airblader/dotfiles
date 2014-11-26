@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import os
 import sys
 import json
@@ -28,10 +27,15 @@ if __name__ == '__main__':
     if line.startswith(','):
       line, prefix = line[1:], ','
 
-    parsed = json.loads(line)
+    try:
+      parsed = json.loads(line)
+    except:
+      continue
 
     x, y = parsed['x'], parsed['y']
     module = parsed['name']
 
     if module == 'calendar':
       os.system('gsimplecal')
+    elif module == 'toggle-volume':
+      os.system('$HOME/.i3/volume-control.py toggle')

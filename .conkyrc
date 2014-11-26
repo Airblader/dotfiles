@@ -17,15 +17,16 @@ TEXT
 ,[
 
 # Volume
-${if_match "${exec amixer -D pulse get Master | grep -o '\[on\]' | head -n1}" == "[on]"}
+${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
   {
     "full_text": "   ",
-    "color": "\#9FBC00F",
+    "color": "\#9FBC00",
     "separator": false,
-    "separator_block_width": 0
+    "separator_block_width": 0,
+    "name": "toggle-volume"
   }
   ,{
-    "full_text": "${exec amixer -D pulse get Master | grep -o '\[.*%\]' | grep -o '[0-9]*%' | head -n1}  ",
+    "full_text": "${exec $HOME/.i3/volume-control.py read}%  ",
     "color": "\#FFFFFF"
   }
 ${else}
@@ -33,7 +34,8 @@ ${else}
     "full_text": "   ",
     "color": "\#B33A3A",
     "separator": false,
-    "separator_block_width": 0
+    "separator_block_width": 0,
+    "name": "toggle-volume"
   }
   ,{
     "full_text": "muted  ",
@@ -88,12 +90,12 @@ ${endif}
     "color": "\#9FBC00",
     "separator": false,
     "separator_block_width": 0,
-    "name":"calendar"
+    "name": "calendar"
   }
   ,{
     "full_text": "${time %a, %d. %B}  ",
     "color": "\#FFFFFF",
-    "name":"calendar"
+    "name": "calendar"
   }
 
 # Time
