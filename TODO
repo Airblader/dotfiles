@@ -1,4 +1,5 @@
 - conky click stuff with yad (https://github.com/nicklan/i3config)
+  - input / output select?
 - Display emails in conky
 - Make clipboard work
 - Rewrite battery-level to use python

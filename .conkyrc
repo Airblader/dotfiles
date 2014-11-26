@@ -14,99 +14,98 @@ override_utf8_locale yes
 cpu_avg_samples 2
 
 TEXT
-,[
-
+,[ \
+ \
 # Volume
 ${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
-  {
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0,
-    "name": "toggle-volume"
-  }
-  ,{
-    "full_text": "${exec $HOME/.i3/volume-control.py read}%  ",
-    "color": "\#FFFFFF"
-  }
+  { \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0, \
+    "name": "toggle-volume" \
+  } \
+  ,{ \
+    "full_text": "${exec $HOME/.i3/volume-control.py read}%  ", \
+    "color": "\#FFFFFF" \
+  } \
 ${else}
-  {
-    "full_text": "   ",
-    "color": "\#B33A3A",
-    "separator": false,
-    "separator_block_width": 0,
-    "name": "toggle-volume"
-  }
-  ,{
-    "full_text": "muted  ",
-    "color": "\#FFFFFF"
-  }
+  { \
+    "full_text": "   ", \
+    "color": "\#B33A3A", \
+    "separator": false, \
+    "separator_block_width": 0, \
+    "name": "toggle-volume" \
+  } \
+  ,{ \
+    "full_text": "muted  ", \
+    "color": "\#FFFFFF" \
+  } \
 ${endif}
-
+ \
 # Battery
-  ,{
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0
-  }
-  ,{
-    "full_text": "${battery_percent}%  ",
-    "color": "\#FFFFFF"
-#    "color": "${execi 30 node $HOME/.i3/battery-color}"
-  }
-
+  ,{ \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0 \
+  } \
+  ,{ \
+    "full_text": "${battery_percent}%  ", \
+    "color": "\#FFFFFF" \
+  } \
+ \
 # Wifi
 ${if_up wlan0}
-  ,{
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0
-  }
-  ,{
-    "full_text": "${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ",
-    "color": "\#FFFFFF"
-  }
+  ,{ \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0 \
+  } \
+  ,{ \
+    "full_text": "${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ", \
+    "color": "\#FFFFFF" \
+  } \
 ${endif}
-
+ \
 # Ethernet
 ${if_up eth0}
-  ,{
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0
-  }
-  ,{
-    "full_text": "${downspeed eth0}  ${addr eth0}  ",
-    "color": "\#FFFFFF"
-  }
+  ,{ \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0 \
+  } \
+  ,{ \
+    "full_text": "${downspeed eth0}  ${addr eth0}  ", \
+    "color": "\#FFFFFF" \
+  } \
 ${endif}
-
+ \
 # Date
-  ,{
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0,
-    "name": "calendar"
-  }
-  ,{
-    "full_text": "${time %a, %d. %B}  ",
-    "color": "\#FFFFFF",
-    "name": "calendar"
-  }
-
+  ,{ \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0, \
+    "name": "calendar" \
+  } \
+  ,{ \
+    "full_text": "${time %a, %d. %B}  ", \
+    "color": "\#FFFFFF", \
+    "name": "calendar" \
+  } \
+ \
 # Time
-  ,{
-    "full_text": "   ",
-    "color": "\#9FBC00",
-    "separator": false,
-    "separator_block_width": 0
-  }
-  ,{
-    "full_text": "${time %H:%M:%S}  ",
-    "color": "\#FFFFFF"
-  }
+  ,{ \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0 \
+  } \
+  ,{ \
+    "full_text": "${time %H:%M:%S}  ", \
+    "color": "\#FFFFFF" \
+  } \
 ]
