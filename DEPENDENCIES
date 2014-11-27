@@ -9,7 +9,6 @@ gnome-settings-daemon
 nm-applet
 
 # currently needed for battery-level
-node
 acpi
 
 # screenshots
@@ -20,9 +19,11 @@ feh
 
 # sound control
 amixer
+pacmd
+pactl
 
 # graphical folder explorer
 nautilus
 
 # picking volume etc. windows
-# yad
+yad

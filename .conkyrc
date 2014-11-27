@@ -16,6 +16,20 @@ cpu_avg_samples 2
 TEXT
 ,[ \
  \
+# Pidgin
+${if_running pidgin}
+  { \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0 \
+  } \
+  ,{ \
+    "full_text": "${exec $HOME/.i3/pidgin-count}  ", \
+    "color": "\#FFFFFF" \
+  }, \
+${endif}
+ \
 # Volume
 ${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
   { \
