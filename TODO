@@ -3,6 +3,7 @@
 - Display emails in conky
 - Make clipboard work
 - Rewrite battery-level to use python
+- Pidgin notification: color
 - Unlock keyring (ssh-add?)
 - i3lock-wrapper: i3lock not green?
 - i3bar: custom separator
