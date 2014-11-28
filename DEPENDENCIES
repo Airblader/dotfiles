@@ -3,6 +3,7 @@ conky
 i3lock
 fonts-font-awesome
 dmenu (suckless-tools)
+python
 
 # autostart stuff (but not "needed")
 gnome-settings-daemon
