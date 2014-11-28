@@ -2,7 +2,7 @@
   - input / output select?
 - Display emails in conky
 - Make clipboard work
-- Rewrite battery-level to use python
+- Disable dpms stuff (see xinitrc)
 - Pidgin notification: color
 - Unlock keyring (ssh-add?)
 - i3lock-wrapper: i3lock not green?
