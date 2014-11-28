@@ -42,15 +42,13 @@ if __name__ == '__main__':
 
     try:
       if module == 'calendar':
-        # TODO use run
-        os.system('gsimplecal')
+        run('gsimplecal')
       elif module == 'volume':
         if button == 1:
           os.system('$HOME/scripts/volume-control.py up 10')
         elif button == 3:
           os.system('$HOME/scripts/volume-control.py down 10')
       elif module == 'toggle-volume':
-        # TODO use run
-        os.system('$HOME/scripts/volume-control.py toggle')
+        run('$HOME/scripts/volume-control.py toggle')
     except:
       pass
