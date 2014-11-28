@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# Prints the total number of unseen messages in pidgin.
+# This requires the pidgin property "Set X property" to be set.
+#
 set -e
 
 PIDGIN="pidgin"
