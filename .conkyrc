@@ -26,14 +26,14 @@ ${if_running pidgin}
     "name": "pidgin" \
   } \
   ,{ \
-    "full_text": "${execi 5 $HOME/.i3/pidgin-count}  ", \
+    "full_text": "${execi 5 $HOME/scripts/pidgin-count}  ", \
     "color": "\#FFFFFF", \
     "name": "pidgin" \
   }, \
 ${endif}
  \
 # Volume
-${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
+${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   { \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -42,7 +42,7 @@ ${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
     "name": "toggle-volume" \
   } \
   ,{ \
-    "full_text": "${exec $HOME/.i3/volume-control.py read}%  ", \
+    "full_text": "${exec $HOME/scripts/volume-control.py read}%  ", \
     "color": "\#FFFFFF", \
     "name": "volume" \
   } \
@@ -71,7 +71,7 @@ ${endif}
   } \
   ,{ \
     "full_text": "${battery_percent}%  ", \
-    "color": "${exec $HOME/.i3/battery-color.py}", \
+    "color": "${exec $HOME/scripts/battery-color.py}", \
     "name": "battery" \
   } \
  \

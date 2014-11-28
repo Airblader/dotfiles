@@ -1,5 +1,3 @@
-- Move scripts
-- Replace scripts with symlinks
 - Display emails in conky
 - Make clipboard work
 - Disable dpms stuff (see xinitrc)
