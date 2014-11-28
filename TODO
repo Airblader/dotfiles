@@ -1,5 +1,5 @@
-- conky click stuff with yad (https://github.com/nicklan/i3config)
-  - input / output select?
+- Move scripts
+- Replace scripts with symlinks
 - Display emails in conky
 - Make clipboard work
 - Disable dpms stuff (see xinitrc)
