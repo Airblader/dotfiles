@@ -71,7 +71,6 @@ ${endif}
   } \
   ,{ \
     "full_text": "${battery_percent}%  ", \
-#    "color": "\#FFFFFF",
     "color": "${exec $HOME/.i3/battery-color.py}", \
     "name": "battery" \
   } \
