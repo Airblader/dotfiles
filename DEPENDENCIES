@@ -24,6 +24,3 @@ pactl
 
 # graphical folder explorer
 nautilus
-
-# picking volume etc. windows
-yad
