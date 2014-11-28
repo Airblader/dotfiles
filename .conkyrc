@@ -71,7 +71,7 @@ ${endif}
   } \
   ,{ \
     "full_text": "${battery_percent}%  ", \
-    "color": "${exec $HOME/scripts/battery-color.py}", \
+    "color": "${execi 30 $HOME/scripts/battery-color.py}", \
     "name": "battery" \
   } \
  \
