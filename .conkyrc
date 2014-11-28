@@ -19,13 +19,13 @@ TEXT
 # Pidgin
 ${if_running pidgin}
   { \
-    "full_text": "   ", \
+    "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
     "separator_block_width": 0 \
   } \
   ,{ \
-    "full_text": "${exec $HOME/.i3/pidgin-count}  ", \
+    "full_text": "${execi 5 $HOME/.i3/pidgin-count}  ", \
     "color": "\#FFFFFF" \
   }, \
 ${endif}
@@ -41,7 +41,8 @@ ${if_match "${exec $HOME/.i3/volume-control.py status}" == "on"}
   } \
   ,{ \
     "full_text": "${exec $HOME/.i3/volume-control.py read}%  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "volume" \
   } \
 ${else}
   { \
