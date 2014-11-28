@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+import subprocess
 import json
 
 def write(message):
@@ -15,6 +16,9 @@ def read():
     return line
   except KeyboardInterrupt:
     sys.exit()
+
+def run(command):
+  return subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
 
 if __name__ == '__main__':
   write('{ "version": 1, "stop_signal": 10, "cont_signal": 12, "click_events": true }')
@@ -34,8 +38,19 @@ if __name__ == '__main__':
 
     x, y = parsed['x'], parsed['y']
     module = parsed['name']
+    button = int(parsed['button'])
 
-    if module == 'calendar':
-      os.system('gsimplecal')
-    elif module == 'toggle-volume':
-      os.system('$HOME/.i3/volume-control.py toggle')
+    try:
+      if module == 'calendar':
+        # TODO use run
+        os.system('gsimplecal')
+      elif module == 'volume':
+        if button == 1:
+          os.system('$HOME/.i3/volume-control.py up 10')
+        elif button == 3:
+          os.system('$HOME/.i3/volume-control.py down 10')
+      elif module == 'toggle-volume':
+        # TODO use run
+        os.system('$HOME/.i3/volume-control.py toggle')
+    except:
+      pass
