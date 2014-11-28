@@ -22,11 +22,13 @@ ${if_running pidgin}
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
-    "separator_block_width": 0 \
+    "separator_block_width": 0, \
+    "name": "pidgin" \
   } \
   ,{ \
     "full_text": "${execi 5 $HOME/.i3/pidgin-count}  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "pidgin" \
   }, \
 ${endif}
  \
@@ -54,7 +56,8 @@ ${else}
   } \
   ,{ \
     "full_text": "muted  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "toggle-volume" \
   } \
 ${endif}
  \
@@ -63,11 +66,13 @@ ${endif}
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
-    "separator_block_width": 0 \
+    "separator_block_width": 0, \
+    "name": "battery" \
   } \
   ,{ \
     "full_text": "${battery_percent}%  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "battery" \
   } \
  \
 # Wifi
@@ -76,11 +81,13 @@ ${if_up wlan0}
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
-    "separator_block_width": 0 \
+    "separator_block_width": 0, \
+    "name": "network" \
   } \
   ,{ \
     "full_text": "${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "network" \
   } \
 ${endif}
  \
@@ -90,11 +97,13 @@ ${if_up eth0}
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
-    "separator_block_width": 0 \
+    "separator_block_width": 0, \
+    "name": "network" \
   } \
   ,{ \
     "full_text": "${downspeed eth0}  ${addr eth0}  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "network" \
   } \
 ${endif}
  \
@@ -117,10 +126,12 @@ ${endif}
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
-    "separator_block_width": 0 \
+    "separator_block_width": 0, \
+    "name": "clock" \
   } \
   ,{ \
     "full_text": "${time %H:%M:%S}  ", \
-    "color": "\#FFFFFF" \
+    "color": "\#FFFFFF", \
+    "name": "clock" \
   } \
 ]
