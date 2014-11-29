@@ -4,8 +4,8 @@
 #
 set -e
 
-id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
-name=$(xprop -id ${id} | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+# TODO hack to avoid crashes due to malformed JSON
+#      how can this be properly escaped?
+name=`xdotool getactivewindow getwindowname | tr '\\' '/' | tr '"' "'"`
 
-name=`echo ${name} | sed "s/'/\\\\\'/g"`
 echo ${name}
