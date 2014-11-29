@@ -16,9 +16,22 @@ cpu_avg_samples 2
 TEXT
 ,[ \
  \
+# Active window
+  { \
+    "full_text": "   ", \
+    "color": "\#9FBC00", \
+    "separator": false, \
+    "separator_block_width": 0, \
+    "name": "active-window" \
+  } \
+  ,{ \
+    "full_text": "${exec $HOME/scripts/active-window}  ", \
+    "color": "\#FFFFFF", \
+    "name": "active-window" \
+  } \
 # Pidgin
 ${if_running pidgin}
-  { \
+  ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
@@ -29,12 +42,12 @@ ${if_running pidgin}
     "full_text": "${execi 5 $HOME/scripts/pidgin-count}  ", \
     "color": "\#FFFFFF", \
     "name": "pidgin" \
-  }, \
+  } \
 ${endif}
  \
 # Volume
 ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
-  { \
+  ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
     "separator": false, \
@@ -47,7 +60,7 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
     "name": "volume" \
   } \
 ${else}
-  { \
+  ,{ \
     "full_text": "   ", \
     "color": "\#B33A3A", \
     "separator": false, \

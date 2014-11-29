@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# Prints the name of the currently active window.
+#
+set -e
+
+id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+name=$(xprop -id ${id} | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+
+name=`echo ${name} | sed "s/'/\\\\\'/g"`
+echo ${name}
