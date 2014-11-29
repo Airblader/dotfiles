@@ -4,8 +4,5 @@
 #
 set -e
 
-# TODO hack to avoid crashes due to malformed JSON
-#      how can this be properly escaped?
-name=`xdotool getactivewindow getwindowname | tr '\\' '/' | tr '"' "'"`
-
+name=`xdotool getactivewindow getwindowname | $HOME/scripts/escape-json.py`
 echo ${name}
