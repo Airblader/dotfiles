@@ -56,6 +56,10 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "border": "${execi 5 $HOME/scripts/volume-color.py}", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "toggle-volume" \
@@ -63,32 +67,52 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   ,{ \
     "full_text": "${exec $HOME/scripts/volume-control.py read}%  ", \
     "color": "\#FFFFFF", \
+    "border": "${execi 5 $HOME/scripts/volume-color.py}", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "name": "volume" \
   } \
 ${else}
   ,{ \
-    "full_text": "   ", \
+    "full_text": "   ", \
     "color": "\#B33A3A", \
+    "border": "\#B33A3A", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "toggle-volume" \
   } \
   ,{ \
     "full_text": "muted  ", \
-    "color": "\#FFFFFF", \
+    "color": "\#FFEEEE", \
+    "border": "\#B33A3A", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "name": "toggle-volume" \
   } \
 ${endif}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "border": "${execi 30 $HOME/scripts/battery-color.py}", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "battery" \
   } \
   ,{ \
     "full_text": "${battery_percent}%  ", \
-    "color": "${execi 30 $HOME/scripts/battery-color.py}", \
+    "color": "\#FFFFFF", \
+    "border": "${execi 30 $HOME/scripts/battery-color.py}", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "name": "battery" \
   } \
 ${if_up wlan0}

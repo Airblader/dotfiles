@@ -1,10 +1,11 @@
+- Extract common color interpolation script for battery/volume
+- Modularize conkyrc
+  - also switch to bash-based json?
 - Display emails in conky
 - Make clipboard work
 - Disable dpms stuff (see xinitrc)
 - Pidgin notification: color
 - Unlock keyring (ssh-add?)
-- i3lock-wrapper: i3lock not green?
-- i3bar: custom separator
 
 - backlight:
   - acpi_osi=Linux [acpi_backlight=vendor|legacy] = nv_backlight (nope)

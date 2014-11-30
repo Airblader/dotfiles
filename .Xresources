@@ -7,8 +7,8 @@ URxvt.fading: 30
 URxvt.thickness: 1
 !URxvt.scrollBar_floating: True
 !URxvt.scrollBar_right: True
-URxvt.scrollBar: off
 !URxvt.scrollColor: #131D24
+URxvt.scrollBar: off
 
 URxvt.borderLess: False
 
@@ -18,7 +18,8 @@ URxvt.visualBell: False
 !URxvt.font: 
 
 *foreground: #DDEEDD
-*background: #131D24
+!*background: #131D24
+*background: #161616
 !*opacity: 0.8
 
 !Black

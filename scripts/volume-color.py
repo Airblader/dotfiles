@@ -5,16 +5,14 @@ import math
 
 color_map = [
   { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-  { 'threshold': 20,  'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-  { 'threshold': 50,  'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
-  { 'threshold': 70,  'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
   { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
+  { 'threshold': 200, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } }
 ]
 
-def get_battery_level():
-  battery_information = subprocess.Popen('acpi -b | grep -o "[0-9]*%"', shell = True, stdout = subprocess.PIPE).stdout.readlines()
+def get_volume():
+  battery_information = subprocess.Popen('$HOME/scripts/volume-control.py read', shell = True, stdout = subprocess.PIPE).stdout.readlines()
   if battery_information:
-    return int(battery_information[0].rstrip()[:-1])
+    return int(battery_information[0].rstrip())
   return 0
 
 def html_hex(color):
@@ -28,14 +26,14 @@ def write(message):
   sys.stdout.flush()
 
 if __name__ == '__main__':
-  battery_level = get_battery_level()
+  volume = get_volume()
 
   for i in range(1, len(color_map)):
-    if battery_level < color_map[i]['threshold']:
+    if volume < color_map[i]['threshold']:
       break
   lower, upper = color_map[i-1], color_map[i]
   diff = float(upper['threshold'] - lower['threshold'])
-  diff_percentage = (battery_level - lower['threshold']) / diff
+  diff_percentage = (volume - lower['threshold']) / diff
   lower_percentage = 1 - diff_percentage
   upper_percentage = diff_percentage
 
