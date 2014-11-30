@@ -4,6 +4,7 @@ set number
 filetype on
 filetype plugin on
 syntax on
+colorscheme jellybeans
 
 set nocompatible
 
