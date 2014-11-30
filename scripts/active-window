@@ -4,5 +4,5 @@
 #
 set -e
 
-name=`xdotool getactivewindow getwindowname | $HOME/scripts/escape-json.py`
+name=`xdotool getactivewindow getwindowname 2>/dev/null | $HOME/scripts/escape-json.py`
 echo ${name}
