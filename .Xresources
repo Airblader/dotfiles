@@ -3,12 +3,12 @@ URxvt.transparent: True
 URxvt.shading: 20
 URxvt.fading: 30
 
-URxvt.scrollstyle: rxvt
+!URxvt.scrollstyle: rxvt
 URxvt.thickness: 1
-URxvt.scrollBar_floating: True
-URxvt.scrollBar_right: True
-URxvt.scrollBar: on
-URxvt.scrollColor: #131D24
+!URxvt.scrollBar_floating: True
+!URxvt.scrollBar_right: True
+URxvt.scrollBar: off
+!URxvt.scrollColor: #131D24
 
 URxvt.borderLess: False
 
