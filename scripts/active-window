@@ -5,4 +5,8 @@
 set -e
 
 name=`xdotool getactivewindow getwindowname 2>/dev/null | $HOME/scripts/escape-json.py`
+if [ -z "${name}" ]; then
+  name="none"
+fi
+
 echo ${name}
