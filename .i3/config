@@ -31,7 +31,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 client.focused          $lime      $lime      $white $lime
 client.unfocused        $darkgray  $darkgray  $white $lime
 client.focused_inactive $darkgray  $darkgray  $white $lime
-client.urgent           $urgentred $darkgray  $white $lime
+client.urgent           $urgentred $urgentred $white $lime
 
 floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
