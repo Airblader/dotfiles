@@ -12,6 +12,9 @@ nm-applet
 # currently needed for battery-level
 acpi
 
+# display of current window title
+xdotool
+
 # screenshots
 scrot
 
