@@ -2,6 +2,7 @@
 set $mod Mod4
 
 set $lime      #9FBC00
+set $darklime  #505e00
 set $blue      #131D24
 set $lightblue #232D34
 set $lightgray #DDEEDD
@@ -29,8 +30,8 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
 #                       BORDER     BACKGROUND TEXT   INDICATOR
 client.focused          $lime      $lime      $white $lime
-client.unfocused        $darkgray  $darkgray  $white $lime
-client.focused_inactive $darkgray  $darkgray  $white $lime
+client.unfocused        $darkgray  $darklime  $white $lime
+client.focused_inactive $darkgray  $darklime  $white $lime
 client.urgent           $urgentred $urgentred $white $lime
 
 floating_modifier $mod
