@@ -16,11 +16,14 @@ cpu_avg_samples 2
 
 TEXT
 ,[ \
- \
-# Active window
   { \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "active-window" \
@@ -28,9 +31,13 @@ TEXT
   ,{ \
     "full_text": "${exec $HOME/scripts/active-window}  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "name": "active-window" \
   } \
-# Pidgin
 ${if_running pidgin}
   ,{ \
     "full_text": "   ", \
@@ -45,8 +52,6 @@ ${if_running pidgin}
     "name": "pidgin" \
   } \
 ${endif}
- \
-# Volume
 ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   ,{ \
     "full_text": "   ", \
@@ -74,8 +79,6 @@ ${else}
     "name": "toggle-volume" \
   } \
 ${endif}
- \
-# Battery
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -88,8 +91,6 @@ ${endif}
     "color": "${execi 30 $HOME/scripts/battery-color.py}", \
     "name": "battery" \
   } \
- \
-# Wifi
 ${if_up wlan0}
   ,{ \
     "full_text": "   ", \
@@ -104,8 +105,6 @@ ${if_up wlan0}
     "name": "network" \
   } \
 ${endif}
- \
-# Ethernet
 ${if_up eth0}
   ,{ \
     "full_text": "   ", \
@@ -120,8 +119,6 @@ ${if_up eth0}
     "name": "network" \
   } \
 ${endif}
- \
-# Date
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -134,8 +131,6 @@ ${endif}
     "color": "\#FFFFFF", \
     "name": "calendar" \
   } \
- \
-# Time
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
