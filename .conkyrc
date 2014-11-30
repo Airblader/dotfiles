@@ -3,7 +3,7 @@ own_window no
 out_to_console yes
 background no
 max_text_width 0
-text_buffer_size 512
+text_buffer_size 1024
 
 update_interval 1.0
 total_run_times 0
@@ -36,6 +36,8 @@ TEXT
     "border_bottom": false, \
     "border_left": false, \
     "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
     "name": "active-window" \
   } \
 ${if_running pidgin}
@@ -56,6 +58,7 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
     "border": "${execi 5 $HOME/scripts/volume-color.py}", \
     "border_bottom": false, \
     "border_left": false, \
@@ -67,16 +70,22 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
   ,{ \
     "full_text": "${exec $HOME/scripts/volume-control.py read}%  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
     "border": "${execi 5 $HOME/scripts/volume-color.py}", \
     "border_bottom": false, \
     "border_left": false, \
     "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
+    "min_width": 40, \
+    "align": "right", \
     "name": "volume" \
   } \
 ${else}
   ,{ \
     "full_text": "   ", \
     "color": "\#B33A3A", \
+    "background": "\#232D34", \
     "border": "\#B33A3A", \
     "border_bottom": false, \
     "border_left": false, \
@@ -88,16 +97,20 @@ ${else}
   ,{ \
     "full_text": "muted  ", \
     "color": "\#FFEEEE", \
+    "background": "\#232D34", \
     "border": "\#B33A3A", \
     "border_bottom": false, \
     "border_left": false, \
     "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
     "name": "toggle-volume" \
   } \
 ${endif}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
     "border": "${execi 30 $HOME/scripts/battery-color.py}", \
     "border_bottom": false, \
     "border_left": false, \
@@ -109,16 +122,26 @@ ${endif}
   ,{ \
     "full_text": "${battery_percent}%  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
     "border": "${execi 30 $HOME/scripts/battery-color.py}", \
     "border_bottom": false, \
     "border_left": false, \
     "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
+    "min_width": 40, \
+    "align": "right", \
     "name": "battery" \
   } \
 ${if_up wlan0}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "network" \
@@ -126,6 +149,13 @@ ${if_up wlan0}
   ,{ \
     "full_text": "${wireless_bitrate wlan0}  ${wireless_essid wlan0}  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
     "name": "network" \
   } \
 ${endif}
@@ -133,6 +163,11 @@ ${if_up eth0}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "network" \
@@ -140,12 +175,24 @@ ${if_up eth0}
   ,{ \
     "full_text": "${downspeed eth0}  ${addr eth0}  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 5, \
     "name": "network" \
   } \
 ${endif}
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "calendar" \
@@ -153,11 +200,23 @@ ${endif}
   ,{ \
     "full_text": "${time %a, %d. %B}  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 0, \
     "name": "calendar" \
   } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "separator": false, \
     "separator_block_width": 0, \
     "name": "clock" \
@@ -165,6 +224,11 @@ ${endif}
   ,{ \
     "full_text": "${time %H:%M:%S}  ", \
     "color": "\#FFFFFF", \
+    "background": "\#232D34", \
+    "border": "\#9FBC00", \
+    "border_bottom": false, \
+    "border_left": false, \
+    "border_right": false, \
     "name": "clock" \
   } \
 ]
