@@ -37,7 +37,7 @@ TEXT
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "name": "active-window" \
   } \
 ${if_running pidgin}
@@ -55,6 +55,7 @@ ${if_running pidgin}
   } \
 ${endif}
 ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -76,12 +77,13 @@ ${if_match "${exec $HOME/scripts/volume-control.py status}" == "on"}
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "min_width": 40, \
     "align": "right", \
     "name": "volume" \
   } \
 ${else}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#B33A3A", \
@@ -103,10 +105,11 @@ ${else}
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "name": "toggle-volume" \
   } \
 ${endif}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -128,12 +131,13 @@ ${endif}
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "min_width": 40, \
     "align": "right", \
     "name": "battery" \
   } \
 ${if_up wlan0}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -155,11 +159,12 @@ ${if_up wlan0}
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "name": "network" \
   } \
 ${endif}
 ${if_up eth0}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -181,10 +186,11 @@ ${if_up eth0}
     "border_left": false, \
     "border_right": false, \
     "separator": false, \
-    "separator_block_width": 5, \
+    "separator_block_width": 0, \
     "name": "network" \
   } \
 ${endif}
+  ,{ "full_text": "    ", "color": "\#E5E511", "separator": false, "separator_block_width": 0, "name": "separator" } \
   ,{ \
     "full_text": "   ", \
     "color": "\#9FBC00", \
@@ -229,6 +235,8 @@ ${endif}
     "border_bottom": false, \
     "border_left": false, \
     "border_right": false, \
+    "separator": false, \
+    "separator_block_width": 0, \
     "name": "clock" \
   } \
 ]
