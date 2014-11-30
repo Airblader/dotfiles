@@ -6,7 +6,8 @@ import math
 color_map = [
   { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
   { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
-  { 'threshold': 200, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } }
+  { 'threshold': 101, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
+  { 'threshold': 200, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } }
 ]
 
 def get_volume():
