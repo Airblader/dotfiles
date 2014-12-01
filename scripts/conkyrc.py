@@ -111,6 +111,8 @@ def blockify_active_window():
   active_window, return_code = run('xdotool getactivewindow getwindowname')
   if return_code != 0:
     active_window = 'none'
+  if len(active_window) > 200:
+    active_window = active_window[:200] + '...'
 
   block = StatusUnit('active-window')
   block.set_icon('')
