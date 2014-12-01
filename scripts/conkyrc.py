@@ -3,6 +3,8 @@
 import sys
 import subprocess
 import json
+import netifaces
+import basiciw
 
 SCRIPT_DIR = '$HOME/scripts/'
 
@@ -11,6 +13,7 @@ colors['white'] = '#FFFFFF'
 colors['light-gray'] = '#232D34'
 colors['lime'] = '#9FBC00'
 colors['urgent'] = '#B33A3A'
+colors['separator'] = '#E5E511'
 
 class StatusBlock:
   def __init__(self, name):
@@ -72,7 +75,7 @@ class StatusUnit:
     self.icon_block.set_full_text('  ' + icon + ' ')
 
   def set_text(self, text):
-    self.status_block.set_full_text(text)
+    self.status_block.set_full_text(text + '  ')
 
   def set_background(self, background):
     self.icon_block.set_background(background)
@@ -90,6 +93,7 @@ class StatusUnit:
 #########################################
 
 def run(command):
+  # TODO return stdout + returncode
   return subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
 
 def run_script(command):
@@ -103,7 +107,7 @@ def blockify_active_window():
   """ Print the currently active window (or 'none'). """
 
   call = run('xdotool getactivewindow getwindowname')
-  active_window = str(call.communicate()[0].rstrip())
+  active_window = call.communicate()[0].strip().decode('utf-8')
   if call.returncode != 0:
     active_window = 'none'
 
@@ -121,7 +125,7 @@ def blockify_pidgin():
   """
 
   call = run_script('pidgin-count')
-  unread_messages = str(call.communicate()[0].rstrip())
+  unread_messages = call.communicate()[0].strip().decode('utf-8')
   if call.returncode != 0:
     return None
 
@@ -141,15 +145,15 @@ def blockify_volume():
   block = StatusUnit('volume')
   block.icon_block.set_name('toggle-volume')
 
-  status = str(run_script('volume-control.py status').communicate()[0].rstrip())
+  status = run_script('volume-control.py status').communicate()[0].strip().decode('utf-8')
   if status == "on":
     block.set_icon('')
 
-    volume = str(run_script('volume-control.py read').communicate()[0].rstrip())
+    volume = run_script('volume-control.py read').communicate()[0].strip().decode('utf-8')
     block.set_text(volume + '%')
 
     # TODO avoid second call to volume-control.py inside this script
-    color = str(run_script('volume-color.py').communicate()[0].rstrip())
+    color = run_script('volume-color.py').communicate()[0].strip().decode('utf-8')
     block.set_border(color, False, True, False, False)
   else:
     block.set_icon('')
@@ -162,9 +166,9 @@ def blockify_volume():
 def blockify_battery():
   """ Print the current battery level. """
 
-  battery = str(run('acpi -b | grep -o "[0-9]*%"').communicate()[0].rstrip()[:-1])
+  battery = run('acpi -b | grep -o "[0-9]*%"').communicate()[0].strip()[:-1].decode('utf-8')
   # TODO incorporate this script here
-  color = str(run_script('battery-color.py').communicate()[0].rstrip())
+  color = run_script('battery-color.py').communicate()[0].strip().decode('utf-8')
 
   block = StatusUnit('battery')
   block.set_icon('')
@@ -178,17 +182,57 @@ def blockify_battery():
 def blockify_wifi():
   """ Prints information about the connected wifi. """
 
-  return None
+  interface = "wlan0"
+  try:
+    with open('/sys/class/net/{}/operstate'.format(interface)) as operstate:
+      status = operstate.read().strip()
+  except:
+    return None  
+  if status != 'up':
+    return None
 
+  # TODO speed?
+  info = basiciw.iwinfo(interface)
+
+  block = StatusUnit('network')
+  block.set_icon('')
+  block.set_text(info['essid'])
+  block.set_border(colors['lime'], False, True, False, False)
+
+  return block.to_json()
+
+# TODO combine with wifi code
 def blockify_ethernet():
   """ Prints information about the connected ethernet. """
 
-  return None
+  interface = "eth0"
+  try:
+    with open('/sys/class/net/{}/operstate'.format(interface)) as operstate:
+      status = operstate.read().strip()
+  except:
+    return None  
+  if status != 'up':
+    return None
+
+  block = StatusUnit('network')
+  block.set_icon('')
+  block.set_text('TODO')
+  block.set_border(colors['lime'], False, True, False, False)
+
+  return block.to_json()
 
 def blockify_datetime():
   """ Prints the date and time. """
 
+  # TODO
   return None
+
+def blockify_separator():
+  block = StatusBlock('separator')
+  block.set_full_text('    ')
+  block.set_color(colors['separator'])
+  block.set_separator(False, 0)
+  return block.to_json()
 
 #########################################
 ### MAIN ################################
@@ -205,7 +249,8 @@ if __name__ == '__main__':
     blockify_datetime()
   ]
 
-  json = ','.join(block for block in blocks if block)
+  separator = ',' + blockify_separator() + ','
+  json = separator.join(block for block in blocks if block)
 
   sys.stdout.write(json)
   sys.stdout.flush()
