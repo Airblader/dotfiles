@@ -10,14 +10,18 @@ colors = {}
 colors['white'] = '#FFFFFF'
 colors['light-gray'] = '#232D34'
 colors['lime'] = '#9FBC00'
+colors['urgent'] = '#B33A3A'
 
 class StatusBlock:
   def __init__(self, name):
     self.block = {}
-    self.block['name'] = name
+    self.set_name(name)
 
   def set_key(self, key, value):
     self.block[key] = value
+
+  def set_name(self, name):
+    self.block['name'] = name
 
   def set_full_text(self, full_text):
     self.set_key('full_text', full_text)
@@ -96,6 +100,8 @@ def run_script(command):
 #########################################
 
 def blockify_active_window():
+  """ Print the currently active window (or 'none'). """
+
   call = run('xdotool getactivewindow getwindowname')
   active_window = call.communicate()[0].rstrip()
   if call.returncode != 0:
@@ -106,12 +112,101 @@ def blockify_active_window():
   block.set_text(active_window)
 
   block.set_border(colors['lime'], False, True, False, False)
+  return block.to_json()
+
+def blockify_pidgin():
+  """ If pidgin is running, print the number of unread messages.
+
+  For this to work, the pidgin option to set a X variable must be enabled.
+  """
+
+  call = run_script('pidgin-count')
+  unread_messages = call.communicate()[0].rstrip()
+  if call.returncode != 0:
+    return None
+
+  block = StatusUnit('pidgin')
+  block.set_icon('')
+  block.set_text(unread_messages)
+
+  if int(unread_messages) == 0:
+    block.set_border(colors['lime'], False, True, False, False)
+  else:
+    block.set_border(colors['white'], False, True, False, False)
+  return block.to_json()
+
+def blockify_volume():
+  """ Print the current volume. """
+
+  block = StatusUnit('volume')
+  block.icon_block.set_name('toggle-volume')
+
+  status = run_script('volume-control.py status').communicate()[0].rstrip()
+  if status == "on":
+    block.set_icon('')
+
+    volume = run_script('volume-control.py read').communicate()[0].rstrip()
+    block.set_text(volume + '%')
+
+    # TODO avoid second call to volume-control.py inside this script
+    color = run_script('volume-color.py').communicate()[0].rstrip()
+    block.set_border(color, False, True, False, False)
+  else:
+    block.set_icon('')
+    block.set_text('muted')
+    block.set_border(color['urgent'], False, True, False, False)
+    block.status_block.set_name('toggle-volume')
 
   return block.to_json()
+
+def blockify_battery():
+  """ Print the current battery level. """
+
+  battery = run('acpi -b | grep -o "[0-9]*%"').communicate()[0].rstrip()[:-1]
+  # TODO incorporate this script here
+  color = run_script('battery-color.py').communicate()[0].rstrip()
+
+  block = StatusUnit('battery')
+  block.set_icon('')
+  block.set_text(battery + '%')
+  block.set_border(color, False, True, False, False)
+
+  block.status_block.set_min_width(40, 'right')
+
+  return block.to_json()
+
+def blockify_wifi():
+  """ Prints information about the connected wifi. """
+
+  return None
+
+def blockify_ethernet():
+  """ Prints information about the connected ethernet. """
+
+  return None
+
+def blockify_datetime():
+  """ Prints the date and time. """
+
+  return None
 
 #########################################
 ### MAIN ################################
 #########################################
 
 if __name__ == '__main__':
-  print str(blockify_active_window())
+  # TODO
+  blocks = [
+    blockify_active_window(),
+    blockify_pidgin(),
+    blockify_volume(),
+    blockify_battery(),
+    blockify_wifi(),
+    blockify_ethernet(),
+    blockify_datetime()
+  ]
+
+  json = ','.join(block for block in blocks if block)
+
+  sys.stdout.write(json)
+  sys.stdout.flush()
