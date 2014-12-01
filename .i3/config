@@ -77,6 +77,7 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Control+Shift+Left move window to workspace prev
 bindsym $mod+Control+Shift+Right move window to workspace next

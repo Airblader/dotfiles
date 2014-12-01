@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# TODO use python3?
 import sys
 import subprocess
 import json
@@ -103,7 +104,7 @@ def blockify_active_window():
   """ Print the currently active window (or 'none'). """
 
   call = run('xdotool getactivewindow getwindowname')
-  active_window = call.communicate()[0].rstrip()
+  active_window = str(call.communicate()[0].rstrip())
   if call.returncode != 0:
     active_window = 'none'
 
@@ -121,7 +122,7 @@ def blockify_pidgin():
   """
 
   call = run_script('pidgin-count')
-  unread_messages = call.communicate()[0].rstrip()
+  unread_messages = str(call.communicate()[0].rstrip())
   if call.returncode != 0:
     return None
 
@@ -141,20 +142,20 @@ def blockify_volume():
   block = StatusUnit('volume')
   block.icon_block.set_name('toggle-volume')
 
-  status = run_script('volume-control.py status').communicate()[0].rstrip()
+  status = str(run_script('volume-control.py status').communicate()[0].rstrip())
   if status == "on":
     block.set_icon('')
 
-    volume = run_script('volume-control.py read').communicate()[0].rstrip()
+    volume = str(run_script('volume-control.py read').communicate()[0].rstrip())
     block.set_text(volume + '%')
 
     # TODO avoid second call to volume-control.py inside this script
-    color = run_script('volume-color.py').communicate()[0].rstrip()
+    color = str(run_script('volume-color.py').communicate()[0].rstrip())
     block.set_border(color, False, True, False, False)
   else:
     block.set_icon('')
     block.set_text('muted')
-    block.set_border(color['urgent'], False, True, False, False)
+    block.set_border(colors['urgent'], False, True, False, False)
     block.status_block.set_name('toggle-volume')
 
   return block.to_json()
@@ -162,13 +163,13 @@ def blockify_volume():
 def blockify_battery():
   """ Print the current battery level. """
 
-  battery = run('acpi -b | grep -o "[0-9]*%"').communicate()[0].rstrip()[:-1]
+  battery = str(run('acpi -b | grep -o "[0-9]*%"').communicate()[0].rstrip()[:-1])
   # TODO incorporate this script here
-  color = run_script('battery-color.py').communicate()[0].rstrip()
+  color = str(run_script('battery-color.py').communicate()[0].rstrip())
 
   block = StatusUnit('battery')
   block.set_icon('')
-  block.set_text(battery + '%')
+  block.set_text(str(battery) + '%')
   block.set_border(color, False, True, False, False)
 
   block.status_block.set_min_width(40, 'right')
@@ -195,7 +196,6 @@ def blockify_datetime():
 #########################################
 
 if __name__ == '__main__':
-  # TODO
   blocks = [
     blockify_active_window(),
     blockify_pidgin(),
