@@ -1,10 +1,10 @@
-- Extract common color interpolation script for battery/volume
-- Modularize conkyrc
-  - also switch to bash-based json?
+- conky
+  - remove old unused scripts
+  - migrate scripts into python wrapper
+  - go through TODO comments in python wrapper
 - Display emails in conky
 - Make clipboard work
 - Disable dpms stuff (see xinitrc)
-- Pidgin notification: color
 - Unlock keyring (ssh-add?)
 
 - backlight:
