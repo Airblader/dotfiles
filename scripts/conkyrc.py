@@ -5,6 +5,7 @@ import subprocess
 import json
 import netifaces
 import basiciw
+import datetime
 
 SCRIPT_DIR = '$HOME/scripts/'
 
@@ -224,8 +225,21 @@ def blockify_ethernet():
 def blockify_datetime():
   """ Prints the date and time. """
 
-  # TODO
-  return None
+  now = datetime.datetime.now()
+
+  calendar = StatusUnit('calendar')
+  clock = StatusUnit('clock')
+
+  calendar.set_icon('')
+  clock.set_icon('')
+
+  calendar.set_text(now.strftime('%a., %d. %b. %Y'))
+  clock.set_text(now.strftime('%H:%M:%S'))
+
+  calendar.set_border(colors['lime'], False, True, False, False)
+  clock.set_border(colors['lime'], False, True, False, False)
+
+  return calendar.to_json() + ',' + clock.to_json()
 
 def blockify_separator():
   block = StatusBlock('separator')
