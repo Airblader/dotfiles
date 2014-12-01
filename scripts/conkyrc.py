@@ -156,6 +156,7 @@ def blockify_volume():
 
     color = run_script('volume-color.py ' + volume)[0]
     block.set_border(color, False, True, False, False)
+    block.status_block.set_min_width(40, 'right')
   else:
     block.set_icon('')
     block.set_text('muted')
