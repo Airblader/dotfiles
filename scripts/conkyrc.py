@@ -137,7 +137,7 @@ def blockify_pidgin():
   if int(unread_messages) == 0:
     block.set_border(colors['lime'], False, True, False, False)
   else:
-    block.set_border(colors['white'], False, True, False, False)
+    block.set_border(colors['urgent'], False, True, False, False)
   return block.to_json()
 
 def blockify_volume():
