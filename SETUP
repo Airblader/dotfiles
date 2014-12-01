@@ -1,0 +1,5 @@
+1. Clone i3 and dotfiles repo
+2. Install dependencies of both repos
+3. make && sudo make install for i3
+4. symlink all dotfiles
+5. use dconf-editor, navigate to org/gnome/settings-daemon/plugins/cursor and untick "active"
