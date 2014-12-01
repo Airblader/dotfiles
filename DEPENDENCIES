@@ -1,7 +1,7 @@
 # obvious stuff
 conky
 i3lock
-fonts-font-awesome
+fonts-font-awesome (>4.2.0)
 dmenu (suckless-tools)
 python3
  - basiciw
