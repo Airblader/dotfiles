@@ -152,8 +152,7 @@ def blockify_volume():
     volume = run_script('volume-control.py read')[0]
     block.set_text(volume + '%')
 
-    # TODO avoid second call to volume-control.py inside this script
-    color = run_script('volume-color.py')[0]
+    color = run_script('volume-color.py ' + volume)[0]
     block.set_border(color, False, True, False, False)
   else:
     block.set_icon('')

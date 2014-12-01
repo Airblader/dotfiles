@@ -10,12 +10,6 @@ color_map = [
   { 'threshold': 200, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } }
 ]
 
-def get_volume():
-  battery_information = subprocess.Popen('$HOME/scripts/volume-control.py read', shell = True, stdout = subprocess.PIPE).stdout.readlines()
-  if battery_information:
-    return int(battery_information[0].rstrip())
-  return 0
-
 def html_hex(color):
   hex_value = str(hex(int(color)))[2:]
   if len(hex_value) == 1:
@@ -27,7 +21,7 @@ def write(message):
   sys.stdout.flush()
 
 if __name__ == '__main__':
-  volume = get_volume()
+  volume = int(sys.argv[1])
 
   for i in range(1, len(color_map)):
     if volume < color_map[i]['threshold']:
