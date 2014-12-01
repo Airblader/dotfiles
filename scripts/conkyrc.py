@@ -94,8 +94,9 @@ class StatusUnit:
 #########################################
 
 def run(command):
-  # TODO return stdout + returncode
-  return subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
+  call = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
+  stdout = call.communicate()[0]
+  return stdout.strip().decode('utf-8'), call.returncode
 
 def run_script(command):
   return run(SCRIPT_DIR + command)
@@ -107,9 +108,8 @@ def run_script(command):
 def blockify_active_window():
   """ Print the currently active window (or 'none'). """
 
-  call = run('xdotool getactivewindow getwindowname')
-  active_window = call.communicate()[0].strip().decode('utf-8')
-  if call.returncode != 0:
+  active_window, return_code = run('xdotool getactivewindow getwindowname')
+  if return_code != 0:
     active_window = 'none'
 
   block = StatusUnit('active-window')
@@ -125,9 +125,8 @@ def blockify_pidgin():
   For this to work, the pidgin option to set a X variable must be enabled.
   """
 
-  call = run_script('pidgin-count')
-  unread_messages = call.communicate()[0].strip().decode('utf-8')
-  if call.returncode != 0:
+  unread_messages, return_code = run_script('pidgin-count')
+  if return_code != 0:
     return None
 
   block = StatusUnit('pidgin')
@@ -146,15 +145,15 @@ def blockify_volume():
   block = StatusUnit('volume')
   block.icon_block.set_name('toggle-volume')
 
-  status = run_script('volume-control.py status').communicate()[0].strip().decode('utf-8')
+  status = run_script('volume-control.py status')[0]
   if status == "on":
     block.set_icon('')
 
-    volume = run_script('volume-control.py read').communicate()[0].strip().decode('utf-8')
+    volume = run_script('volume-control.py read')[0]
     block.set_text(volume + '%')
 
     # TODO avoid second call to volume-control.py inside this script
-    color = run_script('volume-color.py').communicate()[0].strip().decode('utf-8')
+    color = run_script('volume-color.py')[0]
     block.set_border(color, False, True, False, False)
   else:
     block.set_icon('')
@@ -167,9 +166,9 @@ def blockify_volume():
 def blockify_battery():
   """ Print the current battery level. """
 
-  battery = run('acpi -b | grep -o "[0-9]*%"').communicate()[0].strip()[:-1].decode('utf-8')
+  battery = run('acpi -b | grep -o "[0-9]*%"')[0][:-1]
   # TODO incorporate this script here
-  color = run_script('battery-color.py').communicate()[0].strip().decode('utf-8')
+  color = run_script('battery-color.py')[0]
 
   block = StatusUnit('battery')
   block.set_icon('')
