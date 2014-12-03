@@ -64,13 +64,15 @@ class StatusUnit:
     self.icon_block = StatusBlock(name)
     self.status_block = StatusBlock(name)
 
-    self.status_block.set_color(colors['white'])
-    self.icon_block.set_color(colors['lime'])
-
+    self.set_color(colors['lime'], colors['white'])
     self.status_block.set_separator(False, 0)
     self.icon_block.set_separator(False, 0)
 
-    self.set_background(colors['light-gray'])
+    #self.set_background(colors['light-gray'])
+
+  def set_color(self, icon_color, text_color):
+    self.icon_block.set_color(icon_color)
+    self.status_block.set_color(text_color)
 
   def set_icon(self, icon):
     self.icon_block.set_full_text('  ' + icon + ' ')
@@ -85,6 +87,10 @@ class StatusUnit:
   def set_border(self, border, border_right, border_top, border_left, border_bottom):
     self.icon_block.set_border(border, border_right, border_top, border_left, border_bottom)
     self.status_block.set_border(border, border_right, border_top, border_left, border_bottom)
+
+  def set_urgent(self):
+    self.status_block.set_key('urgent', True)
+    self.icon_block.set_key('urgent', True)
 
   def to_json(self):
     return self.icon_block.to_json() + ',' + self.status_block.to_json()
@@ -138,7 +144,7 @@ def blockify_pidgin():
   if int(unread_messages) == 0:
     block.set_border(colors['lime'], False, True, False, False)
   else:
-    block.set_border(colors['urgent'], False, True, False, False)
+    block.set_urgent()
   return block.to_json()
 
 def blockify_volume():
@@ -160,7 +166,7 @@ def blockify_volume():
   else:
     block.set_icon('')
     block.set_text('muted')
-    block.set_border(colors['urgent'], False, True, False, False)
+    block.set_urgent()
     block.status_block.set_name('toggle-volume')
 
   return block.to_json()
@@ -168,17 +174,17 @@ def blockify_volume():
 def blockify_battery():
   """ Print the current battery level. """
 
-  battery = run('acpi -b | grep -o "[0-9]*%"')[0][:-1]
-  # TODO incorporate this script here
-  color = run_script('battery-color.py')[0]
-
   block = StatusUnit('battery')
   block.set_icon('')
+
+  battery = run('acpi -b | grep -o "[0-9]*%"')[0][:-1]
+  # TODO incorporate this script here and then use set_urgent
+  color = run_script('battery-color.py')[0]
+
   block.set_text(str(battery) + '%')
   block.set_border(color, False, True, False, False)
 
   block.status_block.set_min_width(40, 'right')
-
   return block.to_json()
 
 def blockify_wifi():
