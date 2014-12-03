@@ -3,7 +3,6 @@
   - migrate scripts into python wrapper
   - go through TODO comments in python wrapper
 - Display emails in conky
-- Make clipboard work
 - Disable dpms stuff (see xinitrc)
 - Unlock keyring (ssh-add?)
 
