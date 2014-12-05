@@ -3,11 +3,7 @@ URxvt.transparent: True
 URxvt.shading: 20
 URxvt.fading: 30
 
-!URxvt.scrollstyle: rxvt
 URxvt.thickness: 1
-!URxvt.scrollBar_floating: True
-!URxvt.scrollBar_right: True
-!URxvt.scrollColor: #131D24
 URxvt.scrollBar: off
 
 URxvt.borderLess: False
@@ -17,12 +13,8 @@ URxvt.visualBell: False
 
 URxvt.perl-ext-common: default,clipboard
 
-!URxvt.font: 
-
 *foreground: #DDEEDD
-!*background: #131D24
 *background: #161616
-!*opacity: 0.8
 
 !Black
 *color0:  #25374A
