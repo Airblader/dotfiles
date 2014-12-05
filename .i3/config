@@ -55,6 +55,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+h split h
 bindsym $mod+v split v
 
+bindsym $mod+Shift+f gap_size 0
 bindsym $mod+f fullscreen
 
 bindsym $mod+s layout stacking
