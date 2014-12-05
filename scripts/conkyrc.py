@@ -224,7 +224,7 @@ def blockify_ethernet():
 
   block = StatusUnit('network')
   block.set_icon('')
-  block.set_text(interface + '  ' + netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr'])
+  block.set_text(interface + ' @ ' + netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr'])
   block.set_border(colors['lime'], False, True, False, False)
 
   return block.to_json()

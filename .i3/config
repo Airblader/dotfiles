@@ -21,7 +21,8 @@ set $ws8  "8: 8"
 set $ws9  "9:"
 set $ws10 "10:"
 
-gap_size 30
+set $default_gap_size 30
+gap_size $default_gap_size
 
 workspace_auto_back_and_forth yes
 force_display_urgency_hint 0 ms
@@ -138,6 +139,18 @@ mode "$mode_power" {
 }
 bindsym $mod+Control+l mode "$mode_power"
 bindsym Mod1+Control+l mode "$mode_power"
+
+set $mode_gap_size Gap size: (+) increase, (-) decrease, (0) no gaps, (d) default
+mode "$mode_gap_size" {
+        bindsym plus gap_size plus 5
+        bindsym minus gap_size minus 5
+        bindsym 0 gap_size 0
+        bindsym d gap_size $default_gap_size
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+g mode "$mode_gap_size"
 
 # fix graphics glitch
 for_window [class="^.*"] border pixel 0
