@@ -121,6 +121,11 @@ mode "resize" {
         bindsym Up resize shrink height 1 px or 1 ppt
         bindsym Right resize grow width 1 px or 1 ppt
 
+        bindsym Shift+Left resize shrink width 5 px or 5 ppt
+        bindsym Shift+Down resize grow height 5 px or 5 ppt
+        bindsym Shift+Up resize shrink height 5 px or 5 ppt
+        bindsym Shift+Right resize grow width 5 px or 5 ppt
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -141,12 +146,17 @@ mode "$mode_power" {
 bindsym $mod+Control+l mode "$mode_power"
 bindsym Mod1+Control+l mode "$mode_power"
 
-set $mode_gap_size Gap size: (+) increase, (-) decrease, (0) no gaps, (d) default
+set $mode_gap_size Gap size: (+/-/d/0) locally, (Shift + +/-/d/0) globally
 mode "$mode_gap_size" {
-        bindsym plus gap_size plus 5
-        bindsym minus gap_size minus 5
-        bindsym 0 gap_size 0
-        bindsym d gap_size $default_gap_size
+        bindsym plus gap_size current plus 5
+        bindsym minus gap_size current minus 5
+        bindsym 0 gap_size current 0
+        bindsym d gap_size current $default_gap_size
+
+        bindsym Shift+plus gap_size plus 5
+        bindsym Shift+minus gap_size minus 5
+        bindsym Shift+0 gap_size 0
+        bindsym Shift+d gap_size $default_gap_size
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
