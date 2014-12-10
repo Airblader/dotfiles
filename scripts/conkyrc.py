@@ -210,6 +210,7 @@ def blockify_wifi():
   return block.to_json()
 
 # TODO combine with wifi code
+# TODO if ethernet is there but not connected, the i3bar disappears :(
 def blockify_ethernet():
   """ Prints information about the connected ethernet. """
 

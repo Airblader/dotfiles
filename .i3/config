@@ -167,6 +167,10 @@ bindsym $mod+Shift+g mode "$mode_gap_size"
 for_window [class="^.*"] border pixel 0
 for_window [class="(?i)urxvt"] border pixel 3
 
+# dialogs
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
 # windows with no border
 for_window [class="(?i)chrome"]      border none
 for_window [class="(?i)thunderbird"] border none
