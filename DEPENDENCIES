@@ -3,11 +3,12 @@ conky
 i3lock
 fonts-font-awesome (>4.2.0)
 dmenu (suckless-tools)
-python3
- - basiciw
- - netifaces
+iwlib
+python3 (+ pip3)
+ - basiciw (via pip3)
+ - netifaces (via pip3)
 
-# autostart stuff (but not "needed")
+# autostart stuff
 gnome-settings-daemon
 nm-applet
 
