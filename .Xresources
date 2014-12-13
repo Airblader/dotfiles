@@ -11,7 +11,7 @@ URxvt.borderLess: False
 URxvt.urgentOnBell: True
 URxvt.visualBell: False
 
-URxvt.perl-ext-common: default,clipboard
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
 
 *foreground: #DDEEDD
 *background: #161616
