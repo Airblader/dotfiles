@@ -1,4 +1,4 @@
-1. Clone i3 and dotfiles repo
+1. Clone i3, compton and dotfiles repo
 2. Install dependencies of both repos
 3. make && sudo make install for i3
 4. symlink all dotfiles
