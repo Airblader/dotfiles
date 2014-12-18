@@ -7,7 +7,8 @@ if [ "${distro}" != "Ubuntu" ]; then
   exit 2
 fi
 
-DEPS_GENERAL="conky i3lock suckless-tools libiw-dev python3 python3-pip gnome-settings-daemon acpi xdotool scrot feh"
+DEPS_GENERAL="conky i3lock suckless-tools libiw-dev python3 python3-pip gnome-settings-daemon acpi xdotool scrot feh dconf-editor \
+rxvt-unicode-256color"
 
 DEPS_I3="libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev \
 libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
@@ -24,3 +25,5 @@ sudo apt-get install -y ${DEPS_I3}
 sudo apt-get install -y ${DEPS_COMPTON}
 
 sudo pip3 install ${DEPS_PYTHON3}
+
+# TODO symlinks
