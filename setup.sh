@@ -7,8 +7,7 @@ if [ "${distro}" != "Ubuntu" ]; then
   exit 2
 fi
 
-DEPS_GENERAL="conky i3lock suckless-tools iwlib python3 python3-pip gnome-settings-daemon nm-applet acpi xdotool scrot feh \
-amixer pacmd pactl nautilus"
+DEPS_GENERAL="conky i3lock suckless-tools libiw-dev python3 python3-pip gnome-settings-daemon acpi xdotool scrot feh"
 
 DEPS_I3="libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev \
 libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
