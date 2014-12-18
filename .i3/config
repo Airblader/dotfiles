@@ -205,6 +205,8 @@ bar {
 
 # AUTOSTART
 
+exec --no-startup-id xset s off && xset -dpms && xset s noblank
+
 # for GTK support
 exec --no-startup-id gnome-settings-daemon
 
