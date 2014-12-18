@@ -8,6 +8,7 @@ iwlib
 python3 (+ pip3)
  - basiciw (via pip3)
  - netifaces (via pip3)
+ - jsonpath_rw (via pip3)
 
 # autostart stuff
 gnome-settings-daemon
