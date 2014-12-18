@@ -19,8 +19,8 @@ x11-utils libpcre3-dev libconfig-dev libdrm-dev asciidoc"
 
 DEPS_PYTHON3="basiciw netifaces jsonpath_rw"
 
-`sudo apt-get install ${DEPS_GENERAL}`
-`sudo apt-get install ${DEPS_I3}`
-`sudo apt-get install ${DEPS_COMPTON}`
+`sudo apt-get install -y ${DEPS_GENERAL}`
+`sudo apt-get install -y ${DEPS_I3}`
+`sudo apt-get install -y ${DEPS_COMPTON}`
 
 `sudo pip3 install ${DEPS_PYTHON3}`
