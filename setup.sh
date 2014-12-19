@@ -58,7 +58,7 @@ ask "Install packages?" Y && {
   sudo apt-get install -y ${DEPS_COMPTON}
 }
 
-ask "Install python3 modules?" Y && { sudo pip3 install ${DEPS_PYTHON3} }
+ask "Install python3 modules?" Y && sudo pip3 install ${DEPS_PYTHON3}
 
 dir=`pwd`
 if [ ! -e "${dir}/${0}" ]; then
