@@ -4,6 +4,7 @@ conky
 i3lock
 fonts-font-awesome (>4.2.0)
 dmenu (suckless-tools)
+gsimplecal
 iwlib
 python3 (+ pip3)
  - basiciw (via pip3)
