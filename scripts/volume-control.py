@@ -1,24 +1,26 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import subprocess
 import sys
 
+def run(command):
+  call = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
+  stdout = call.communicate()[0]
+  return stdout.strip().decode('utf-8'), call.returncode
+
 def get_active_sink():
-  process = subprocess.Popen('pacmd list-sinks | grep "* index" | awk \'{print $3}\'', shell = True, stdout = subprocess.PIPE)
-  return process.stdout.readlines()[0].rstrip()
+  return run('pacmd list-sinks | grep "* index" | awk \'{print $3}\'')[0]
 
 def get_volume():
-  process = subprocess.Popen('amixer -D pulse get Master | grep -o "\[.*%\]" | grep -o "[0-9]*" | head -n1', shell = True, stdout = subprocess.PIPE)
-  return process.stdout.readlines()[0]
+  return run('amixer -D pulse get Master | grep -o "\[.*%\]" | grep -o "[0-9]*" | head -n1')[0]
 
 def set_volume(percentage):
-  subprocess.Popen('pactl set-sink-volume ' + get_active_sink() + ' ' + str(percentage) + '%', shell = True, stdout = subprocess.PIPE)
+  run('pactl set-sink-volume ' + get_active_sink() + ' ' + str(percentage) + '%')
 
 def toggle_volume():
-  subprocess.Popen('amixer -D pulse set Master Playback Switch toggle', shell = True, stdout = subprocess.PIPE)
+  run('amixer -D pulse set Master Playback Switch toggle')
 
 def is_muted():
-  process = subprocess.Popen('amixer -D pulse get Master | grep -o "\[on\]" | head -n1', shell = True, stdout = subprocess.PIPE)
-  return not process.stdout.readlines()
+  return not run('amixer -D pulse get Master | grep -o "\[on\]" | head -n1')[0]
 
 def write(message):
   sys.stdout.write(message)
