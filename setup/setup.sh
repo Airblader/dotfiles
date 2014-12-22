@@ -40,7 +40,7 @@ if [ ! -e "${dir}/${0}" ]; then
 fi
 
 distro=`lsb_release -si`
-if [ ! -f "dependencies-${distro}" ];
+if [ ! -f "dependencies-${distro}" ]; then
   echo "Could not find file with dependencies for distro ${distro}. Aborting."
   exit 2
 fi
