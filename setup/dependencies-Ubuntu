@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -e
+
+sudo apt-get install -y \
+conky \
+i3lock \
+gnome-settings-daemon \
+gsimplecal \
+ \
+scrot \
+feh \
+ \
+acpi \
+xdotool \
+dconf-editor \
+ \
+# dmenu
+suckless-tools \
+ \
+# python tooling
+libiw-dev \
+python3 \
+python3-pip \
+ \
+# terminal
+rxvt-unicode-256color \
+ \
+# building i3
+libxcb1-dev \
+libxcb-keysyms1-dev \
+libpango1.0-dev \
+libxcb-util0-dev \
+libxcb-icccm4-dev \
+libyajl-dev \
+libstartup-notification0-dev \
+libxcb-randr0-dev \
+libev-dev \
+libxcb-cursor-dev \
+libxcb-xinerama0-dev \
+libxcb-xkb-dev \
+libxkbcommon-dev \
+libxkbcommon-x11-dev \
+ \
+# building compton
+libglu1-mesa-dev \
+libdbus-1-dev \
+libxcomposite-dev \
+libxdamage-dev \
+libxfixes-dev \
+libxext-dev \
+libxrender-dev \
+libxrandr-dev \
+libxinerama-dev \
+pkg-config \
+x11-utils \
+libpcre3-dev \
+libconfig-dev \
+libdrm-dev \
+asciidoc
