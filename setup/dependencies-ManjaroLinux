@@ -4,9 +4,26 @@
 sudo pacman --noconfirm -S \
 gcc \
 make \
+ \
+conky \
+i3lock \
+gsimplecal \
+ \
+scrot \
+feh \
+ \
+acpi \
+xdotool \
+dmenu \
+ \
+rxvt-unicode
+ \
 xcb-util-keysyms \
 xcb-util-wm \
 xcb-util-cursor \
 yajl \
 startup-notification \
-libev
+libev \
+ \
+python3 \
+
