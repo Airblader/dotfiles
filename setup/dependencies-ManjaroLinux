@@ -4,8 +4,6 @@
 sudo pacman --noconfirm -S \
 gcc \
 make \
- \
-# building i3
 xcb-util-keysyms \
 xcb-util-wm \
 xcb-util-cursor \
