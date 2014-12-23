@@ -2,6 +2,7 @@
 set -e
 
 sudo apt-get install -y \
+vim \
 conky \
 i3lock \
 gnome-settings-daemon \

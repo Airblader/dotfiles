@@ -2,6 +2,7 @@
 #set -e
 
 sudo pacman --noconfirm -S \
+vim \
 gcc \
 make \
  \
@@ -24,4 +25,5 @@ yajl \
 startup-notification \
 libev \
  \
-python3
+python3 \
+python-pip
