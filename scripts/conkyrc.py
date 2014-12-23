@@ -214,7 +214,11 @@ def blockify_volume():
     volume = run_script('volume-control.py read')[0]
     block.set_text(volume + '%')
 
-    color = run_script('volume-color.py ' + volume)[0]
+    color = get_color_gradient(int(volume), [ 
+      { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
+      { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
+      { 'threshold': 101, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
+      { 'threshold': 200, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } } ])
     block.set_border(color, False, True, False, False)
     block.status_block.set_min_width(40, 'right')
   else:
@@ -271,7 +275,6 @@ def blockify_wifi():
   if status != 'up':
     return None
 
-  # TODO speed?
   info = basiciw.iwinfo(interface)
 
   block = StatusUnit('network')
