@@ -38,6 +38,7 @@ if [ ! -e "${dir}/${0}" ]; then
   echo "Script not called from within repository directory. Aborting."
   exit 2
 fi
+dir="${dir}/.."
 
 distro=`lsb_release -si`
 if [ ! -f "dependencies-${distro}" ]; then
@@ -65,4 +66,4 @@ ask "Install symlink for .bash.d/?" Y && ln -sfn ${dir}/.bash.d ${HOME}/.bash.d
 
 ask "Install symlink for scripts/?" Y && ln -sfn ${dir}/scripts ${HOME}/scripts
 
-ask "Install hard link for /etc/sudoers.d/power-control?" Y && sudo ln ${dir}/etc/sudoers.d/power-control /etc/sudoers.d/power-control
+ask "Copy file for /etc/sudoers.d/power-control?" Y && sudo cp ${dir}/etc/sudoers.d/power-control /etc/sudoers.d/power-control
