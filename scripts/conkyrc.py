@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import subprocess
+import math
 import json
 import netifaces
 import basiciw
@@ -136,6 +137,30 @@ def get_window_titles():
   expression = parse("$..window_properties.title")
   return [match.value for match in expression.find(get_workspace())]
 
+def html_hex(color):
+  hex_value = str(hex(int(color)))[2:]
+  if len(hex_value) == 1:
+    return '0' + hex_value
+  return hex_value
+
+def get_color_gradient(percentage, color_map):
+  for i in range(1, len(color_map)):
+    if percentage < color_map[i]['threshold']:
+      break
+  lower, upper = color_map[i-1], color_map[i]
+  diff = float(upper['threshold'] - lower['threshold'])
+  diff_percentage = (percentage - lower['threshold']) / diff
+  lower_percentage = 1 - diff_percentage
+  upper_percentage = diff_percentage
+
+  color = { 
+    'r': math.floor( lower['color']['r'] * lower_percentage + upper['color']['r'] * upper_percentage ),
+    'g': math.floor( lower['color']['g'] * lower_percentage + upper['color']['g'] * upper_percentage ),
+    'b': math.floor( lower['color']['b'] * lower_percentage + upper['color']['b'] * upper_percentage )
+  }
+
+  return '#' + html_hex(color['r']) + html_hex(color['g']) + html_hex(color['b'])
+
 #########################################
 ### MODULES #############################
 #########################################
@@ -221,8 +246,12 @@ def blockify_battery():
   block.set_text(battery)
 
   if battery_int > 10 or is_charging:
-    # TODO incorporate this script here and then use set_urgent
-    color = run_script('battery-color.py')[0]
+    color = get_color_gradient(battery_int, [ 
+      { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
+      { 'threshold': 20,  'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
+      { 'threshold': 50,  'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
+      { 'threshold': 70,  'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
+      { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } } ])
     block.set_border(color, False, True, False, False)
   else:
     block.set_urgent()
