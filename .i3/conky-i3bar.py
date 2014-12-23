@@ -45,14 +45,14 @@ if __name__ == '__main__':
         run('gsimplecal')
       elif module == 'volume':
         if button == 1:
-          os.system('$HOME/scripts/volume-control.py up 10')
+          os.system('$HOME/scripts/volume_control.py up 10')
         elif button == 3:
-          os.system('$HOME/scripts/volume-control.py down 10')
+          os.system('$HOME/scripts/volume_control.py down 10')
         elif button == 4:
-          os.system('$HOME/scripts/volume-control.py up 1')
+          os.system('$HOME/scripts/volume_control.py up 1')
         elif button == 5:
-          os.system('$HOME/scripts/volume-control.py down 1')
+          os.system('$HOME/scripts/volume_control.py down 1')
       elif module == 'toggle-volume' and button == 1:
-        run('$HOME/scripts/volume-control.py toggle')
+        run('$HOME/scripts/volume_control.py toggle')
     except:
       pass

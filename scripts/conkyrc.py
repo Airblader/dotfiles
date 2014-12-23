@@ -9,6 +9,7 @@ import basiciw
 import time
 import datetime
 import re
+import volume_control
 from jsonpath_rw import jsonpath, parse
 
 SCRIPT_DIR = '$HOME/scripts/'
@@ -207,11 +208,11 @@ def blockify_volume():
   block = StatusUnit('volume')
   block.icon_block.set_name('toggle-volume')
 
-  status = run_script('volume-control.py status')[0]
+  status = volume_control.status()
   if status == "on":
     block.set_icon('')
 
-    volume = run_script('volume-control.py read')[0]
+    volume = volume_control.get_volume()
     block.set_text(volume + '%')
 
     color = get_color_gradient(int(volume), [ 
@@ -235,7 +236,7 @@ def blockify_battery():
   block = StatusUnit('battery')
   block.set_icon('')
 
-  acpi = run('acpi')[0]
+  acpi = run('acpi -b')[0]
   battery = re.search('\d*%', acpi).group(0)
   battery_int = int(battery[:-1])
   is_charging = bool(re.search('Charging', acpi))

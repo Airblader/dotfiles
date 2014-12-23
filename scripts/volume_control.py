@@ -34,6 +34,12 @@ def trim_to_range(volume):
     volume = 200
   return volume
 
+def status():
+  if int(get_volume()) == 0 or is_muted():
+    return 'muted'
+  else:
+    return 'on'
+
 if __name__ == '__main__':
   command = sys.argv[1]
 
@@ -50,11 +56,6 @@ if __name__ == '__main__':
   elif command == 'read':
     write(get_volume())
   elif command == 'status':
-    if int(get_volume()) == 0:
-      write('muted')
-    elif is_muted():
-      write('muted')
-    else:
-      write('on')
+    write(status())
   else:
     write('Usage: ' + sys.argv[0] + ' [set|up|down|toggle|read|status] [value]\n')
