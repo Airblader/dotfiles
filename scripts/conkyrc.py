@@ -16,6 +16,7 @@ SCRIPT_DIR = '$HOME/scripts/'
 
 colors = {}
 colors['white'] = '#FFFFFF'
+colors['blue'] = '#131D24'
 colors['light-gray'] = '#232D34'
 colors['lime'] = '#9FBC00'
 colors['urgent'] = '#B33A3A'
@@ -88,8 +89,8 @@ class StatusUnit:
     self.status_block.set_background(background)
 
   def set_border(self, border, border_right, border_top, border_left, border_bottom):
-    self.icon_block.set_border(border, border_right, border_top, border_left, border_bottom)
-    self.status_block.set_border(border, border_right, border_top, border_left, border_bottom)
+    self.icon_block.set_border(border, False, border_top, border_left, border_bottom)
+    self.status_block.set_border(border, border_right, border_top, False, border_bottom)
 
   def set_urgent(self):
     self.status_block.set_key('urgent', True)
@@ -179,7 +180,6 @@ def blockify_active_window():
   block.set_icon('')
   block.set_text(active_window)
 
-  block.set_border(colors['lime'], False, True, False, False)
   return block.to_json()
 
 def blockify_pidgin():
@@ -196,9 +196,7 @@ def blockify_pidgin():
   block.set_icon('')
   block.set_text(unread_messages)
 
-  if int(unread_messages) == 0:
-    block.set_border(colors['lime'], False, True, False, False)
-  else:
+  if int(unread_messages) != 0:
     block.set_urgent()
   return block.to_json()
 
@@ -215,9 +213,10 @@ def blockify_volume():
     volume = volume_control.get_volume()
     block.set_text(volume + '%')
 
+    # TODO decode color from hex
     color = get_color_gradient(int(volume), [ 
       { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-      { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
+      { 'threshold': 100, 'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } },
       { 'threshold': 101, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
       { 'threshold': 200, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } } ])
     block.set_border(color, False, True, False, False)
@@ -243,7 +242,7 @@ def blockify_battery():
 
   blink_color = None
   if battery_int < 99 and not is_charging:
-    blink_color = colors['yellow']
+    blink_color = colors['urgent']
 
   if blink_color and int(time.time()) % 2:
     block.icon_block.set_color(blink_color)
@@ -254,9 +253,8 @@ def blockify_battery():
     color = get_color_gradient(battery_int, [ 
       { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
       { 'threshold': 20,  'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-      { 'threshold': 50,  'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
-      { 'threshold': 70,  'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } },
-      { 'threshold': 100, 'color': { 'r': 0x9F, 'g': 0xBC, 'b': 0x00 } } ])
+      { 'threshold': 80,  'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } },
+      { 'threshold': 100, 'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } } ])
     block.set_border(color, False, True, False, False)
   else:
     block.set_urgent()
@@ -281,7 +279,6 @@ def blockify_wifi():
   block = StatusUnit('network')
   block.set_icon('')
   block.set_text(info['essid'])
-  block.set_border(colors['lime'], False, True, False, False)
 
   return block.to_json()
 
@@ -302,28 +299,28 @@ def blockify_ethernet():
   block = StatusUnit('network')
   block.set_icon('')
   block.set_text(interface + ' @ ' + netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr'])
-  block.set_border(colors['lime'], False, True, False, False)
 
   return block.to_json()
 
-def blockify_datetime():
+def blockify_date():
   """ Prints the date and time. """
 
   now = datetime.datetime.now()
 
   calendar = StatusUnit('calendar')
-  clock = StatusUnit('clock')
-
   calendar.set_icon('')
-  clock.set_icon('')
-
   calendar.set_text(now.strftime('%a., %d. %b. %Y'))
+  return calendar.to_json()
+
+def blockify_time():
+  """ Prints the time. """
+
+  now = datetime.datetime.now()
+
+  clock = StatusUnit('clock')
+  clock.set_icon('')
   clock.set_text(now.strftime('%H:%M:%S'))
-
-  calendar.set_border(colors['lime'], False, True, False, False)
-  clock.set_border(colors['lime'], False, True, False, False)
-
-  return calendar.to_json() + ',' + clock.to_json()
+  return clock.to_json()
 
 def blockify_separator():
   block = StatusBlock('separator')
@@ -344,7 +341,8 @@ if __name__ == '__main__':
     blockify_battery(),
     blockify_wifi(),
     blockify_ethernet(),
-    blockify_datetime()
+    blockify_date(),
+    blockify_time()
   ]
 
   separator = ',' + blockify_separator() + ','
