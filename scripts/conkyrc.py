@@ -53,9 +53,9 @@ class StatusBlock:
     if not border_top:
       self.set_key('border_top', border_top)
     if not border_left:
-      self.set_key('border_left', border_right)
+      self.set_key('border_left', border_left)
     if not border_bottom:
-      self.set_key('border_bottom', border_right)
+      self.set_key('border_bottom', border_bottom)
 
   def set_min_width(self, min_width, align):
     self.set_key('min_width', min_width)
@@ -78,10 +78,10 @@ class StatusUnit:
     self.status_block.set_color(text_color)
 
   def set_icon(self, icon):
-    self.icon_block.set_full_text('  ' + icon + ' ')
+    self.icon_block.set_full_text(icon)
 
   def set_text(self, text):
-    self.status_block.set_full_text(text + '  ')
+    self.status_block.set_full_text(text)
 
   def set_background(self, background):
     self.icon_block.set_background(background)
