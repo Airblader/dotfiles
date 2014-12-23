@@ -5,7 +5,7 @@ echo "Installing some essentials..."
 sudo pacman --noconfirm -S vim gcc make
 
 echo "Installing useful tools..."
-sudo pacman --noconfirm -S conky i3lock gsimplecal scrot feh acpi xdotool dmenu pulseaudio-ctl
+sudo pacman --noconfirm -S conky i3lock gsimplecal scrot feh acpi xdotool dmenu pulseaudio-ctl network-manager-applet
 
 echo "Installing urxvt..."
 sudo pacman --noconfirm -S rxvt-unicode
