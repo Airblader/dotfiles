@@ -5,7 +5,9 @@ import subprocess
 import json
 import netifaces
 import basiciw
+import time
 import datetime
+import re
 from jsonpath_rw import jsonpath, parse
 
 SCRIPT_DIR = '$HOME/scripts/'
@@ -15,7 +17,7 @@ colors['white'] = '#FFFFFF'
 colors['light-gray'] = '#232D34'
 colors['lime'] = '#9FBC00'
 colors['urgent'] = '#B33A3A'
-colors['separator'] = '#E5E511'
+colors['yellow'] = '#E5E511'
 
 class StatusBlock:
   def __init__(self, name):
@@ -68,8 +70,6 @@ class StatusUnit:
     self.set_color(colors['lime'], colors['white'])
     self.status_block.set_separator(False, 0)
     self.icon_block.set_separator(False, 0)
-
-    #self.set_background(colors['light-gray'])
 
   def set_color(self, icon_color, text_color):
     self.icon_block.set_color(icon_color)
@@ -206,12 +206,26 @@ def blockify_battery():
   block = StatusUnit('battery')
   block.set_icon('')
 
-  battery = run('acpi -b | grep -o "[0-9]*%"')[0][:-1]
-  # TODO incorporate this script here and then use set_urgent
-  color = run_script('battery-color.py')[0]
+  acpi = run('acpi')[0]
+  battery = re.search('\d*%', acpi).group(0)
+  battery_int = int(battery[:-1])
+  is_charging = bool(re.search('Charging', acpi))
 
-  block.set_text(str(battery) + '%')
-  block.set_border(color, False, True, False, False)
+  blink_color = None
+  if battery_int < 99 and not is_charging:
+    blink_color = colors['yellow']
+
+  if blink_color and int(time.time()) % 2:
+    block.icon_block.set_color(blink_color)
+
+  block.set_text(battery)
+
+  if battery_int > 10 or is_charging:
+    # TODO incorporate this script here and then use set_urgent
+    color = run_script('battery-color.py')[0]
+    block.set_border(color, False, True, False, False)
+  else:
+    block.set_urgent()
 
   block.status_block.set_min_width(40, 'right')
   return block.to_json()
@@ -281,7 +295,7 @@ def blockify_datetime():
 def blockify_separator():
   block = StatusBlock('separator')
   block.set_full_text('    ')
-  block.set_color(colors['separator'])
+  block.set_color(colors['yellow'])
   block.set_separator(False, 0)
   return block.to_json()
 
