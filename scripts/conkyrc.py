@@ -238,7 +238,7 @@ def blockify_battery():
   acpi = run('acpi -b')[0]
   battery = re.search('\d*%', acpi).group(0)
   battery_int = int(battery[:-1])
-  is_charging = bool(re.search('Charging', acpi))
+  is_charging = bool(re.search('Charging|Unknown', acpi))
 
   blink_color = None
   if battery_int < 99 and not is_charging:
