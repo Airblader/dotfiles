@@ -61,12 +61,11 @@ def blockify_volume():
     volume = volume_control.get_volume()
     block.set_text(volume + '%')
 
-    # TODO decode color from hex
     color = get_color_gradient(int(volume), [ 
-      { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-      { 'threshold': 100, 'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } },
-      { 'threshold': 101, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } },
-      { 'threshold': 200, 'color': { 'r': 0xFF, 'g': 0xFF, 'b': 0x00 } } ])
+      { 'threshold': 0,   'color': colors['urgent'] },
+      { 'threshold': 100, 'color': '#131D24' },
+      { 'threshold': 101, 'color': '#FFFF00' },
+      { 'threshold': 200, 'color': '#FFFF00' } ])
     block.set_border(color, False, True, False, False)
     block.status_block.set_min_width(40, 'right')
   else:
@@ -99,10 +98,10 @@ def blockify_battery():
 
   if battery_int > 10 or is_charging:
     color = get_color_gradient(battery_int, [ 
-      { 'threshold': 0,   'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-      { 'threshold': 20,  'color': { 'r': 0xB3, 'g': 0x3A, 'b': 0x3A } },
-      { 'threshold': 80,  'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } },
-      { 'threshold': 100, 'color': { 'r': 0x13, 'g': 0x1D, 'b': 0x24 } } ])
+      { 'threshold': 0,   'color': '#B33A3A' },
+      { 'threshold': 20,  'color': '#B33A3A' },
+      { 'threshold': 80,  'color': '#131D24' },
+      { 'threshold': 100, 'color': '#131D24' } ])
     block.set_border(color, False, True, False, False)
   else:
     block.set_urgent()
