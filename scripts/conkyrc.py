@@ -63,9 +63,9 @@ def blockify_volume():
 
     color = get_color_gradient(int(volume), [ 
       { 'threshold': 0,   'color': colors['urgent'] },
-      { 'threshold': 100, 'color': '#131D24' },
-      { 'threshold': 101, 'color': '#FFFF00' },
-      { 'threshold': 200, 'color': '#FFFF00' } ])
+      { 'threshold': 100, 'color': colors['blue'] },
+      { 'threshold': 101, 'color': colors['yellow'] },
+      { 'threshold': 200, 'color': colors['yellow'] } ])
     block.set_border(color, False, True, False, False)
     block.status_block.set_min_width(40, 'right')
   else:
@@ -98,10 +98,10 @@ def blockify_battery():
 
   if battery_int > 10 or is_charging:
     color = get_color_gradient(battery_int, [ 
-      { 'threshold': 0,   'color': '#B33A3A' },
-      { 'threshold': 20,  'color': '#B33A3A' },
-      { 'threshold': 80,  'color': '#131D24' },
-      { 'threshold': 100, 'color': '#131D24' } ])
+      { 'threshold': 0,   'color': colors['urgent'] },
+      { 'threshold': 20,  'color': colors['urgent'] },
+      { 'threshold': 80,  'color': colors['blue'] },
+      { 'threshold': 100, 'color': colors['blue'] } ])
     block.set_border(color, False, True, False, False)
   else:
     block.set_urgent()
