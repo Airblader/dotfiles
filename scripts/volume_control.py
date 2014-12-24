@@ -2,25 +2,22 @@
 import subprocess
 import sys
 
-def run(command):
-  call = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
-  stdout = call.communicate()[0]
-  return stdout.strip().decode('utf-8'), call.returncode
+import executor
 
 def get_active_sink():
-  return run('pacmd list-sinks | grep "* index" | awk \'{print $3}\'')[0]
+  return executor.run('pacmd list-sinks | grep "* index" | awk \'{print $3}\'')[0]
 
 def get_volume():
-  return run('amixer -D pulse get Master | grep -o "\[.*%\]" | grep -o "[0-9]*" | head -n1')[0]
+  return executor.run('amixer -D pulse get Master | grep -o "\[.*%\]" | grep -o "[0-9]*" | head -n1')[0]
 
 def set_volume(percentage):
-  run('pactl set-sink-volume ' + get_active_sink() + ' ' + str(percentage) + '%')
+  executor.run('pactl set-sink-volume ' + get_active_sink() + ' ' + str(percentage) + '%')
 
 def toggle_volume():
-  run('amixer -D pulse set Master Playback Switch toggle')
+  executor.run('amixer -D pulse set Master Playback Switch toggle')
 
 def is_muted():
-  return not run('amixer -D pulse get Master | grep -o "\[on\]" | head -n1')[0]
+  return not executor.run('amixer -D pulse get Master | grep -o "\[on\]" | head -n1')[0]
 
 def write(message):
   sys.stdout.write(message)

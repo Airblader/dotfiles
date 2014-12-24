@@ -13,50 +13,13 @@ import re
 from jsonpath_rw import jsonpath, parse
 
 import volume_control
+import executor
 from color_definitions import colors
 from status_block import StatusBlock, StatusUnit
-
-SCRIPT_DIR = '$HOME/scripts/'
 
 #########################################
 ### UTIL ################################
 #########################################
-
-def run(command):
-  call = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
-  stdout = call.communicate()[0]
-  return stdout.strip().decode('utf-8'), call.returncode
-
-def run_script(command):
-  return run(SCRIPT_DIR + command)
-
-def i3_msg(type):
-  ''' Executes i3-msg -t <type> and returns the parsed JSON output.  '''
-  return json.loads(run('i3-msg -t ' + type)[0])
-
-def get_workspace():
-  ''' Returns the node of the currently focused workspace. '''
-  workspaces = i3_msg('get_workspaces')
-  tree = i3_msg('get_tree')
-
-  focused_num = None
-  for workspace in workspaces:
-    if workspace['focused']:
-      focused_num = workspace['num']
-      break
-
-  for node in tree['nodes'][1]['nodes'][1]['nodes']:
-    if node['num'] == focused_num:
-      return node
-
-  return None
-
-# TODO remove a flag which one is the active window
-def get_window_titles():
-  ''' Returns an array of window titles of the current workspace.  '''
-
-  expression = parse("$..window_properties.title")
-  return [match.value for match in expression.find(get_workspace())]
 
 def html_hex(color):
   hex_value = str(hex(int(color)))[2:]
@@ -89,7 +52,7 @@ def get_color_gradient(percentage, color_map):
 def blockify_active_window():
   """ Print the currently active window (or 'none'). """
 
-  active_window, return_code = run('xdotool getactivewindow getwindowname')
+  active_window, return_code = executor.run('xdotool getactivewindow getwindowname')
   if return_code != 0:
     return None
   if len(active_window) > 100:
@@ -107,7 +70,7 @@ def blockify_pidgin():
   For this to work, the pidgin option to set a X variable must be enabled.
   """
 
-  unread_messages, return_code = run_script('pidgin-count')
+  unread_messages, return_code = executor.run_script('pidgin-count')
   if return_code != 0:
     return None
 
@@ -154,7 +117,7 @@ def blockify_battery():
   block = StatusUnit('battery')
   block.set_icon('')
 
-  acpi = run('acpi -b')[0]
+  acpi = executor.run('acpi -b')[0]
   battery = re.search('\d*%', acpi).group(0)
   battery_int = int(battery[:-1])
   is_charging = bool(re.search('Charging|Unknown', acpi))
