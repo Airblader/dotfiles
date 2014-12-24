@@ -2,7 +2,7 @@
 set -e
 
 echo "Installing some essentials..."
-sudo pacman --noconfirm -S vim gcc make
+sudo pacman --noconfirm -S vim gcc make yaourt
 
 echo "Installing useful tools..."
 sudo pacman --noconfirm -S conky i3lock gsimplecal scrot feh acpi xdotool dmenu pulseaudio-ctl network-manager-applet
