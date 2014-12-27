@@ -15,6 +15,8 @@ from color_definitions import colors
 from gradient import get_color_gradient
 from status_block import StatusBlock, StatusUnit
 
+TOP_BORDER_WIDTH = 2
+
 def blockify_active_window():
   """ Print the currently active window (or 'none'). """
 
@@ -66,7 +68,7 @@ def blockify_volume():
       { 'threshold': 100, 'color': colors['blue'] },
       { 'threshold': 101, 'color': colors['yellow'] },
       { 'threshold': 200, 'color': colors['yellow'] } ])
-    block.set_border(color, False, True, False, False)
+    block.set_border(color, 0, TOP_BORDER_WIDTH, 0, 0)
     block.status_block.set_min_width(40, 'right')
   else:
     block.set_icon('')
@@ -102,7 +104,7 @@ def blockify_battery():
       { 'threshold': 20,  'color': colors['urgent'] },
       { 'threshold': 80,  'color': colors['blue'] },
       { 'threshold': 100, 'color': colors['blue'] } ])
-    block.set_border(color, False, True, False, False)
+    block.set_border(color, 0, TOP_BORDER_WIDTH, 0, 0)
   else:
     block.set_urgent()
 

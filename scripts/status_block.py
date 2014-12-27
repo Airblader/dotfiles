@@ -31,14 +31,10 @@ class StatusBlock:
 
   def set_border(self, border, border_right, border_top, border_left, border_bottom):
     self.set_key('border', border)
-    if not border_right:
-      self.set_key('border_right', border_right)
-    if not border_top:
-      self.set_key('border_top', border_top)
-    if not border_left:
-      self.set_key('border_left', border_left)
-    if not border_bottom:
-      self.set_key('border_bottom', border_bottom)
+    self.set_key('border_right', border_right)
+    self.set_key('border_top', border_top)
+    self.set_key('border_left', border_left)
+    self.set_key('border_bottom', border_bottom)
 
   def set_min_width(self, min_width, align):
     self.set_key('min_width', min_width)
@@ -71,8 +67,8 @@ class StatusUnit:
     self.status_block.set_background(background)
 
   def set_border(self, border, border_right, border_top, border_left, border_bottom):
-    self.icon_block.set_border(border, False, border_top, border_left, border_bottom)
-    self.status_block.set_border(border, border_right, border_top, False, border_bottom)
+    self.icon_block.set_border(border, 0, border_top, border_left, border_bottom)
+    self.status_block.set_border(border, border_right, border_top, 0, border_bottom)
 
   def set_urgent(self):
     self.status_block.set_key('urgent', True)
