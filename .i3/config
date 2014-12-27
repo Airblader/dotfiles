@@ -191,6 +191,7 @@ bar {
         position bottom
         font pango:FontAwesome 8
         strip_workspace_numbers yes
+        height 20
         colors {
                 statusline         $lightgray
                 background         $blue
