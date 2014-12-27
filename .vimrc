@@ -1,3 +1,10 @@
+set t_Co=256
+
+execute pathogen#infect()
+:let g:airline_theme='base16'
+set laststatus=2
+set noshowmode
+
 set hlsearch
 set number
 
@@ -18,12 +25,6 @@ set smarttab
 
 set shiftwidth=4
 set softtabstop=4
-
-" window movement
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 highlight clear SignColumn
 highlight VertSplit    ctermbg=236
