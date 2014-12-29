@@ -21,9 +21,12 @@ set $ws8  "8: 8"
 set $ws9  "9:"
 set $ws10 "10:"
 
-set $default_gap_size 30
-gap_size $default_gap_size
-smart_borders on
+set $default_gaps_inner 15
+set $default_gaps_outer 30
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
+#smart_borders no_gaps
 
 workspace_auto_back_and_forth yes
 force_display_urgency_hint 0 ms
@@ -57,7 +60,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+h split h
 bindsym $mod+v split v
 
-bindsym $mod+Shift+f gap_size 0
 bindsym $mod+f fullscreen
 
 bindsym $mod+s layout stacking
@@ -146,22 +148,46 @@ mode "$mode_power" {
 bindsym $mod+Control+l mode "$mode_power"
 bindsym Mod1+Control+l mode "$mode_power"
 
-set $mode_gap_size Gap size: (+/-/d/0) locally, (Shift + +/-/d/0) globally
-mode "$mode_gap_size" {
-        bindsym plus gap_size current plus 5
-        bindsym minus gap_size current minus 5
-        bindsym 0 gap_size current 0
-        bindsym d gap_size current $default_gap_size
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|d|0 (local), Shift + +|-|d|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|d|0 (local), Shift + +|-|d|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
 
-        bindsym Shift+plus gap_size plus 5
-        bindsym Shift+minus gap_size minus 5
-        bindsym Shift+0 gap_size 0
-        bindsym Shift+d gap_size $default_gap_size
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+        bindsym d     gaps inner current set $default_gaps_inner
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+        bindsym Shift+d     gaps inner all set $default_gaps_inner
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+Shift+g mode "$mode_gap_size"
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+        bindsym d     gaps outer current set $default_gaps_outer
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+        bindsym Shift+d     gaps outer all set $default_gaps_outer
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # fix graphics glitch
 for_window [class="^.*"] border pixel 0
