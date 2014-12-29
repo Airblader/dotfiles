@@ -1,10 +1,5 @@
 set t_Co=256
 
-execute pathogen#infect()
-:let g:airline_theme='base16'
-set laststatus=2
-set noshowmode
-
 set hlsearch
 set number
 
