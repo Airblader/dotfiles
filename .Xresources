@@ -1,3 +1,10 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
 URxvt.geometry: 140x30
 URxvt.transparent: True
 URxvt.shading: 20
@@ -11,6 +18,7 @@ URxvt.borderLess: False
 URxvt.urgentOnBell: True
 URxvt.visualBell: False
 
+URxvt.font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
 URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
 
 *foreground: #DDEEDD
