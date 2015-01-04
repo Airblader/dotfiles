@@ -25,8 +25,7 @@ class StatusBlock:
     self.set_key('background', background)
 
   def set_separator(self, separator, block_width):
-    if not separator:
-      self.set_key('separator', separator)
+    self.set_key('separator', separator)
     self.set_key('separator_block_width', block_width)
 
   def set_border(self, border, border_right, border_top, border_left, border_bottom):
@@ -40,6 +39,9 @@ class StatusBlock:
     self.set_key('min_width', min_width)
     self.set_key('align', align)
 
+  def set_style(self, style):
+    self.set_key('style', style);
+
   def to_json(self):
     return json.dumps(self.block)
 
@@ -49,7 +51,7 @@ class StatusUnit:
     self.status_block = StatusBlock(name)
 
     self.set_color(colors['lime'], colors['white'])
-    self.status_block.set_separator(False, 0)
+    self.status_block.set_separator(False, 1)
     self.icon_block.set_separator(False, 0)
 
   def set_color(self, icon_color, text_color):
@@ -73,6 +75,12 @@ class StatusUnit:
   def set_urgent(self):
     self.status_block.set_key('urgent', True)
     self.icon_block.set_key('urgent', True)
+
+  def set_style(self, style):
+    left = style[0] + '|'
+    right = '|' + style[-1]
+    self.icon_block.set_style(left)
+    self.status_block.set_style(right);
 
   def to_json(self):
     return self.icon_block.to_json() + ',' + self.status_block.to_json()
