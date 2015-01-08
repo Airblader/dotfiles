@@ -14,10 +14,10 @@ set $ws1  "1:"
 set $ws2  "2:"
 set $ws3  "3:"
 set $ws4  "4:"
-set $ws5  "5:"
-set $ws6  "6: 6"
-set $ws7  "7: 7"
-set $ws8  "8: 8"
+set $ws5 "5:"
+set $ws6  "6: 6"
+set $ws7  "7: 7"
+set $ws8  "8: 8"
 set $ws9  "9:"
 set $ws10 "10:"
 
@@ -117,7 +117,9 @@ bindsym --release Shift+Print exec scrot -s $HOME/Pictures/screenshot-$(date +%Y
 bindsym $mod+n exec --no-startup-id nautilus --browser --no-desktop
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
+set $mode_resize    resize
+bindsym $mod+r mode "$mode_resize"
+mode "$mode_resize" {
         bindsym Left resize shrink width 1 px or 1 ppt
         bindsym Down resize grow height 1 px or 1 ppt
         bindsym Up resize shrink height 1 px or 1 ppt
@@ -131,9 +133,8 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
-set $mode_power System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
+set $mode_power    (l)ock | (e)xit | (s)uspend | (h)ibernate | (r)eboot | (p)oweroff
 mode "$mode_power" {
         bindsym l exec --no-startup-id $HOME/.i3/i3exit lock, mode "default"
         bindsym e exec --no-startup-id $HOME/.i3/i3exit logout, mode "default"
@@ -210,7 +211,7 @@ assign [class="(?i)pidgin"]      $ws10
 bar {
         status_command $HOME/.i3/conky-i3bar.py
         position bottom
-        font pango:FontAwesome 8
+        font pango:Icons 8
         strip_workspace_numbers yes
         height 20
         colors {

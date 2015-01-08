@@ -17,4 +17,4 @@ echo "Installing python..."
 sudo pacman --noconfirm -S python3 python-pip
 
 
-yaourt compton-git ttf-font-awesome
+yaourt compton-git ttf-font-icons

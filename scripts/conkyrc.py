@@ -58,12 +58,17 @@ def blockify_volume():
 
   status = volume_control.status()
   if status == "on":
-    block.set_icon('')
+    volume = int(volume_control.get_volume())
+    if volume > 80:
+      block.set_icon('')
+    elif volume > 40:
+      block.set_icon('')
+    else:
+      block.set_icon('')
 
-    volume = volume_control.get_volume()
-    block.set_text(volume + '%')
+    block.set_text(str(volume) + '%')
 
-    color = get_color_gradient(int(volume), [ 
+    color = get_color_gradient(volume, [
       { 'threshold': 0,   'color': colors['urgent'] },
       { 'threshold': 100, 'color': colors['blue'] },
       { 'threshold': 101, 'color': colors['yellow'] },
@@ -71,7 +76,7 @@ def blockify_volume():
     block.set_border(color, 0, TOP_BORDER_WIDTH, 0, 0)
     block.status_block.set_min_width(40, 'right')
   else:
-    block.set_icon('')
+    block.set_icon('')
     block.set_text('muted')
     block.set_urgent()
     block.status_block.set_name('toggle-volume')
@@ -89,12 +94,16 @@ def blockify_battery():
   battery_int = int(battery[:-1])
   is_charging = bool(re.search('Charging|Unknown', acpi))
 
-  blink_color = None
-  if battery_int < 99 and not is_charging:
-    blink_color = colors['urgent']
-
-  if blink_color and int(time.time()) % 2:
-    block.icon_block.set_color(blink_color)
+  if is_charging:
+    block.set_icon('')
+  elif battery_int > 90:
+    block.set_icon('')
+  elif battery_int > 50:
+    block.set_icon('')
+  elif battery_int > 20:
+    block.set_icon('')
+  else:
+    block.set_icon('')
 
   block.set_text(battery)
 
