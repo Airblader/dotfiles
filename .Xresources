@@ -7,7 +7,7 @@ Xft.lcdfilter: lcddefault
 
 URxvt.geometry: 140x30
 URxvt.transparent: True
-URxvt.shading: 20
+URxvt.shading: 10
 URxvt.fading: 30
 
 URxvt.thickness: 1
@@ -22,7 +22,7 @@ URxvt.font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=
 URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
 
 *foreground: #DDEEDD
-*background: #161616
+*background: #121212
 
 !Black
 *color0:  #25374A
