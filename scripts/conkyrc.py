@@ -135,7 +135,7 @@ def blockify_wifi():
   info = basiciw.iwinfo(interface)
 
   block = StatusUnit('network')
-  block.set_icon('')
+  block.set_icon('')
   block.set_text(info['essid'])
 
   return block.to_json()

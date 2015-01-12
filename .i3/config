@@ -19,7 +19,7 @@ set $ws6  "6: 6"
 set $ws7  "7: 7"
 set $ws8  "8: 8"
 set $ws9  "9:"
-set $ws10 "10:"
+set $ws10 "10:"
 
 set $default_gaps_inner 15
 set $default_gaps_outer 30
@@ -211,7 +211,7 @@ assign [class="(?i)pidgin"]      $ws10
 bar {
         status_command $HOME/.i3/conky-i3bar.py
         position bottom
-        font pango:Icons 8
+        font pango:Terminus, Icons 8
         strip_workspace_numbers yes
         height 20
         colors {
