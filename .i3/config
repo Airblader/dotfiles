@@ -47,10 +47,10 @@ bindsym $mod+q kill
 bindsym $mod+d exec dmenu_run -i -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -p "Search:" -nb "$blue" -nf "$lightgray" -sb "$lightblue" -sf "$lime"'
 
-bindsym $mod+Control+Left focus left
-bindsym $mod+Control+Right focus right
-bindsym $mod+Control+Up focus up
-bindsym $mod+Control+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
 
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
