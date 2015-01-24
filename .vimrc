@@ -27,6 +27,8 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 
+set noswapfile
+
 highlight clear SignColumn
 highlight VertSplit    ctermbg=236
 highlight ColorColumn  ctermbg=237
